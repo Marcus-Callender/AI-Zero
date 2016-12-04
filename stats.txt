@@ -1,0 +1,17 @@
+
+weapon 		|damage	|startup	|block stun	|active	|recovery
+z-saber		|		|			|			|		|
+shiled		|		|			|			|		|
+buster		|		|			|			|		|
+tonfa		|		|			|			|		|
+slide		|		|			|			|		|
+air spin	|		|			|			|		|
+throw		|		|			|			|		|
+
+		|damage	|speed	|range
+health 	|		|		|
+
+
+
+
+
