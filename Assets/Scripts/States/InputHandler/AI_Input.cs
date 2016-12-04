@@ -438,7 +438,7 @@ public class AI_Input : BaseInputHandler
 		if ((m_StatusInputs & IntToFlag((int)eAI_InputArray.ENEMY_CLOSE)) != IntToFlag((int)eAI_InputArray.ENEMY_CLOSE))
 			return eAI_Actions.PRESSURE;*/
 
-		return (eAI_Actions)Random.Range(0, 3);
+		//return (eAI_Actions)Random.Range(0, 3);
 
 		//DEBUG_STATE++;
 
@@ -448,7 +448,7 @@ public class AI_Input : BaseInputHandler
 		//return (eAI_Actions)DEBUG_STATE;
 
 		//return eAI_Actions.PRESSURE;
-		//return (eAI_Actions)Random.Range(0, 6);
+		return (eAI_Actions)Random.Range(0, 6);
 	}
 
 	public eAI_Actions Wait(float deltaTime, eStates myState, bool stateChanged)
