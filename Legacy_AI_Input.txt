@@ -1,0 +1,572 @@
+using UnityEngine;
+using System.Collections;
+
+public enum eAI_Inputs
+{
+	ENEMY_CLOSE = 1,
+	ENEMY_MID = 2,
+	ENEMY_FAR = 4,
+	ENEMY_JUMPING = 8,
+
+	ENEMY_ADVANCING = 16,
+	ENEMY_RETRETING = 32,
+
+	ENEMY_ATTACKING = 64,
+	ENEMY_DEFENDINNG = 128,
+
+	ENEMY_ON_LEFT = 256,
+	PROJECTILE_ACTIVE = 512
+}
+
+/*public enum eAI_InputArray
+{
+	ENEMY_CLOSE,
+	ENEMY_MID,
+	ENEMY_FAR,
+
+	ENEMY_JUMPING,
+	ENEMY_ON_LEFT,
+
+	TOTAL_INPUTS
+}*/
+
+public enum eAI_Actions
+{
+	ZONE,
+	POKE,
+	PRESSURE,
+
+	JUMP_IN,
+	ANTI_AIR,
+	DEFFEND,
+
+	FREE,
+	WAIT
+}
+
+public class AI_Input : BaseInputHandler
+{
+	eWeaponType m_weapon1;
+	eWeaponType m_weapon2;
+
+	private float m_stateTime = 0.0f;
+	private float m_waitingTime = 1.5f;
+	private float m_defendTime = 3.0f;
+	private eAI_Actions m_currentAction;
+	private eAI_Actions m_previousAction;
+	private bool[] m_input = new bool[(int)eInputs.SIZE_OF_E_INPUTS];
+	private int m_StatusInputs = 0;
+	private int m_statePosition = 0;
+
+	private float m_baseInputTime;
+	private float[] m_InputTimings;
+	
+	//private float[] m_InputTimings = new float[(int)eAI_InputArray.TOTAL_INPUTS];
+	//private bool[] m_InputResults = new bool[(int)eAI_InputArray.TOTAL_INPUTS];
+
+	public override void Initialize()
+	{
+		m_currentAction = eAI_Actions.WAIT;
+		m_previousAction = eAI_Actions.WAIT;
+
+		/*for (int z = 0; z < (int)eAI_InputArray.TOTAL_INPUTS; z++)
+		{
+			m_InputTimings[z] = m_baseInputTime;
+			m_InputResults[z] = false;
+		}*/
+	}
+
+	public override void Cycle(float deltaTime, eStates myState)
+	{
+		for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
+		{
+			m_input[z] = false;
+		}
+
+		bool stateChanged = false;
+
+		if (m_previousAction != m_currentAction)
+		{
+			Debug.Log("Going to state: " + m_currentAction);
+
+			m_stateTime = 0.0f;
+			m_previousAction = m_currentAction;
+			m_statePosition = 0;
+
+			stateChanged = true;
+		}
+
+		if (m_currentAction == eAI_Actions.ANTI_AIR)
+			m_currentAction = AntiAir(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.DEFFEND)
+			m_currentAction = Defend(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.JUMP_IN)
+			m_currentAction = JumpIn(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.POKE)
+			m_currentAction = Poke(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.PRESSURE)
+			m_currentAction = Pressure(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.ZONE)
+			m_currentAction = Zone(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.FREE)
+			m_currentAction = FreeAction(deltaTime, myState, stateChanged);
+
+		else if (m_currentAction == eAI_Actions.WAIT)
+			m_currentAction = Wait(deltaTime, myState, stateChanged);
+	}
+
+	public override void ReceveStatus(Charicter opponent, Charicter me)
+	{
+		m_StatusInputs = 0;
+
+		float distance = Mathf.Abs(opponent.getX() - me.getX());
+
+		if (distance < 4.0f)
+			m_StatusInputs += (/*0x01 <<*/ (int)eAI_Inputs.ENEMY_CLOSE);
+
+		if (distance > 2.0f && distance < 16.0f)
+			m_StatusInputs += (/*0x01 <<*/ (int)eAI_Inputs.ENEMY_MID);
+
+		if (distance > 8.0f && distance < 32.0f)
+			m_StatusInputs += (/*0x01 <<*/ (int)eAI_Inputs.ENEMY_FAR);
+
+		if (opponent.getY() > me.getY())
+			m_StatusInputs += (/*0x01 <<*/ (int)eAI_Inputs.ENEMY_JUMPING);
+
+		if (opponent.getX() < me.getX())
+			m_StatusInputs += (/*0x01 <<*/ (int)eAI_Inputs.ENEMY_ON_LEFT);
+	}
+
+	/*public void SetInputStatus(Charicter opponent, Charicter me, float deltaTime)
+	{
+		float distance = Mathf.Abs(opponent.getX() - me.getX());
+
+		SetInput((int)eAI_InputArray.ENEMY_CLOSE, (distance < 4.0f), deltaTime);
+
+		SetInput((int)eAI_InputArray.ENEMY_MID, (distance > 2.0f && distance < 16.0f), deltaTime);
+
+		SetInput((int)eAI_InputArray.ENEMY_FAR, (distance > 8.0f && distance < 32.0f), deltaTime);
+
+		SetInput((int)eAI_InputArray.ENEMY_JUMPING, (opponent.getY() > me.getY()), deltaTime);
+
+		SetInput((int)eAI_InputArray.ENEMY_ON_LEFT, (opponent.getX() < me.getX()), deltaTime);
+	}*/
+
+	/*void SetInput(int z, bool active, float deltaTime)
+	{
+		if (active)
+		{
+			if (m_InputTimings[z] <= 0.0f)
+			{
+				m_InputResults[z] = true;
+			}
+			else
+			{
+				m_InputTimings[z] -= deltaTime;
+			}
+		}
+		else
+			m_InputTimings[z] -= m_baseInputTime;
+	}*/
+
+	public override void Inputs(ref bool[] inputs)
+	{
+		for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
+			inputs[z] = m_input[z];
+	}
+
+	public override void GiveWeapons(eWeaponType weapon1, eWeaponType weapon2)
+	{
+		m_weapon1 = weapon1;
+		m_weapon2 = weapon2;
+	}
+
+	public eAI_Actions Zone(float deltaTime, eStates myState, bool stateChanged)
+	{
+		//if (stateChanged)
+		//{
+		//	m_input[(int)eInputs.DOWN] = true;
+		//	m_input[(int)eInputs.ATTACK_1] = true;
+		//}
+		//else if (myState != eStates.SLIDING)
+		//{
+		//	return eAI_Actions.WAIT;
+		//}
+
+		//return eAI_Actions.ZONE;
+
+		if (m_statePosition == 0)
+		{
+			if ((m_StatusInputs & ((int)eAI_Inputs.ENEMY_FAR /*| (int)eAI_Inputs.ENEMY_MID*/)) != (int)eAI_Inputs.ENEMY_FAR)
+			{
+				if ((m_StatusInputs & ((int)eAI_Inputs.ENEMY_JUMPING)) != (int)eAI_Inputs.ENEMY_JUMPING)
+				{
+					if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_CLOSE) == (int)eAI_Inputs.ENEMY_CLOSE)
+					{
+						//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+						//	m_input[(int)eInputs.LEFT] = true;
+						//else
+						//	m_input[(int)eInputs.RIGHT] = true;
+						MoveToward();
+					}
+					else
+					{
+						//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+						//	m_input[(int)eInputs.RIGHT] = true;
+						//else
+						//	m_input[(int)eInputs.LEFT] = true;
+						MoveAway();
+					}
+				}
+			}
+			else
+				m_statePosition++;
+		}
+		else if (m_statePosition <= 5)
+		{
+			//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) != (int)eAI_Inputs.ENEMY_ON_LEFT)
+			//	m_input[(int)eInputs.RIGHT] = true;
+			//else
+			//	m_input[(int)eInputs.LEFT] = true;
+
+			MoveToward();
+
+			m_statePosition++;
+		}
+		else if (m_statePosition == 6)
+		{
+			//m_input[(int)eInputs.DOWN] = true;
+			//m_input[(int)eInputs.ATTACK_1] = true;
+			UseRangedAttack();
+			m_statePosition++;
+		}
+		else if (m_statePosition == 7)
+		{
+			if (myState == eStates.STANDING)
+				return eAI_Actions.WAIT;
+		}
+
+		return eAI_Actions.ZONE;
+	}
+
+	public eAI_Actions Poke(float deltaTime, eStates myState, bool stateChanged)
+	{
+		if (m_statePosition == 0)
+		{
+			if ((m_StatusInputs & ((int)eAI_Inputs.ENEMY_MID | (int)eAI_Inputs.ENEMY_CLOSE | (int)eAI_Inputs.ENEMY_FAR)) != (int)eAI_Inputs.ENEMY_MID)
+			{
+				if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_CLOSE) != (int)eAI_Inputs.ENEMY_CLOSE)
+				{
+					//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+					//	m_input[(int)eInputs.LEFT] = true;
+					//else
+					//	m_input[(int)eInputs.RIGHT] = true;
+					MoveToward();
+				}
+				else
+				{
+					//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+					//	m_input[(int)eInputs.RIGHT] = true;
+					//else
+					//	m_input[(int)eInputs.LEFT] = true;
+					MoveAway();
+				}
+			}
+			else
+				m_statePosition++;
+		}
+		else if (m_statePosition <= 5)
+		{
+			//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) != (int)eAI_Inputs.ENEMY_ON_LEFT)
+			//	m_input[(int)eInputs.RIGHT] = true;
+			//else
+			//	m_input[(int)eInputs.LEFT] = true;
+
+			MoveToward();
+
+			m_statePosition++;
+		}
+		else if (m_statePosition == 6)
+		{
+			//m_input[(int)eInputs.ATTACK_1] = true;
+			UseMidRangeAttack();
+			m_statePosition++;
+		}
+		else if (m_statePosition == 7)
+		{
+			if (myState == eStates.STANDING)
+				return eAI_Actions.WAIT;
+		}
+
+		return eAI_Actions.POKE;
+	}
+
+	public eAI_Actions Pressure(float deltaTime, eStates myState, bool stateChanged)
+	{
+		if (m_statePosition == 0)
+		{
+			if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_CLOSE) != (int)eAI_Inputs.ENEMY_CLOSE)
+			{
+				//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+				//	m_input[(int)eInputs.LEFT] = true;
+				//else
+				//	m_input[(int)eInputs.RIGHT] = true;
+				MoveToward();
+			}
+			else
+				m_statePosition++;
+		}
+		else if (m_statePosition == 1)
+		{
+			//m_input[(int)eInputs.ATTACK_2] = true;
+			UseFastAttack();
+			m_statePosition++;
+		}
+		else if (m_statePosition == 2)
+		{
+			if (myState == eStates.STANDING)
+				return eAI_Actions.WAIT;
+		}
+
+		return eAI_Actions.PRESSURE;
+	}
+
+	public eAI_Actions JumpIn(float deltaTime, eStates myState, bool stateChanged)
+	{
+		if (m_statePosition <= 5)
+		{
+			m_input[(int)eInputs.JUMP] = true;
+
+			//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+			//	m_input[(int)eInputs.LEFT] = true;
+			//else
+			//	m_input[(int)eInputs.RIGHT] = true;
+
+			MoveToward();
+
+			m_statePosition++;
+		}
+		else
+		{
+			if (myState == eStates.STANDING)
+				return eAI_Actions.WAIT;
+		}
+
+		return eAI_Actions.JUMP_IN;
+	}
+
+	public eAI_Actions AntiAir(float deltaTime, eStates myState, bool stateChanged)
+	{
+		if (stateChanged)
+		{
+			m_input[(int)eInputs.JUMP] = true;
+		}
+		else if (myState == eStates.STANDING)
+		{
+			return eAI_Actions.WAIT;
+		}
+
+		return eAI_Actions.ANTI_AIR;
+	}
+
+	public eAI_Actions Defend(float deltaTime, eStates myState, bool stateChanged)
+	{
+		m_stateTime += deltaTime;
+
+		if (m_stateTime > m_defendTime)
+		{
+			return eAI_Actions.WAIT;
+		}
+
+		m_input[(int)eInputs.BLOCK] = true;
+
+		//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+		//	m_input[(int)eInputs.LEFT] = true;
+		//else
+		//	m_input[(int)eInputs.RIGHT] = true;
+
+		MoveToward();
+
+		return eAI_Actions.DEFFEND;
+	}
+
+	public eAI_Actions FreeAction(float deltaTime, eStates myState, bool stateChanged)
+	{
+		//return (eAI_Actions)Random.Range(0, 6);
+		return (eAI_Actions)Random.Range(0, 3);
+		//return eAI_Actions.POKE;
+	}
+
+	public eAI_Actions Wait(float deltaTime, eStates myState, bool stateChanged)
+	{
+		m_stateTime += deltaTime;
+
+		if (m_stateTime > m_waitingTime)
+		{
+			return eAI_Actions.FREE;
+		}
+
+		return eAI_Actions.WAIT;
+	}
+
+	void MoveAway()
+	{
+		//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) != (int)eAI_Inputs.ENEMY_ON_LEFT)
+		if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+			m_input[(int)eInputs.RIGHT] = true;
+		else
+			m_input[(int)eInputs.LEFT] = true;
+	}
+
+	void MoveToward()
+	{
+		//if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) != (int)eAI_Inputs.ENEMY_ON_LEFT)
+		if ((m_StatusInputs & (int)eAI_Inputs.ENEMY_ON_LEFT) == (int)eAI_Inputs.ENEMY_ON_LEFT)
+			m_input[(int)eInputs.LEFT] = true;
+		else
+			m_input[(int)eInputs.RIGHT] = true;
+	}
+
+	void UseFastAttack()
+	{
+		if (m_weapon1 == eWeaponType.SABER)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.SABER)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else if (m_weapon1 == eWeaponType.TONFA)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.TONFA)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else
+		{
+			m_input[(int)eInputs.BLOCK] = true;
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+	}
+
+	void UseMidRangeAttack()
+	{
+		if (m_weapon1 == eWeaponType.TONFA)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.TONFA)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else if (m_weapon1 == eWeaponType.BUSTER)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.BUSTER)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else
+		{
+			m_input[(int)eInputs.DOWN] = true;
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+	}
+
+	void UseRangedAttack()
+	{
+		if (m_weapon1 == eWeaponType.BUSTER)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.BUSTER)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else if (m_weapon1 == eWeaponType.SHIELD)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.SHIELD)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else
+		{
+			m_input[(int)eInputs.DOWN] = true;
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+	}
+
+	void UseAntiAirAttack()
+	{
+		if (m_weapon1 == eWeaponType.SHIELD)
+		{
+			m_input[(int)eInputs.UP] = true;
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.SHIELD)
+		{
+			m_input[(int)eInputs.UP] = true;
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else if (m_weapon1 == eWeaponType.SABER)
+		{
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+		else if (m_weapon2 == eWeaponType.SABER)
+		{
+			m_input[(int)eInputs.ATTACK_2] = true;
+		}
+		else
+		{
+			m_input[(int)eInputs.DOWN] = true;
+			m_input[(int)eInputs.ATTACK_1] = true;
+		}
+	}
+
+	int FindBitIndex(int z)
+	{
+		if (z == 0)
+			return 0;
+
+		if (z == 1)
+			return 1;
+
+		if (z == 2)
+			return 2;
+
+		if (z == 4)
+			return 3;
+
+		if (z == 8)
+			return 4;
+
+		if (z == 16)
+			return 5;
+
+		if (z == 32)
+			return 6;
+
+		if (z == 64)
+			return 7;
+
+		if (z == 128)
+			return 8;
+
+		if (z == 256)
+			return 9;
+
+		return 0;
+	}
+}

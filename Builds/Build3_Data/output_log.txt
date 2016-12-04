@@ -1,0 +1,730 @@
+Mono path[0] = 'C:/Users/User/Desktop/MM/Builds/Build3_Data/Managed'
+Mono path[1] = 'C:/Users/User/Desktop/MM/Builds/Build3_Data/Mono'
+Mono config path = 'C:/Users/User/Desktop/MM/Builds/Build3_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/User/Desktop/MM/Builds/Build3_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55123
+Multi-casting "[IP] 192.168.0.12 [Port] 55123 [Flags] 3 [Guid] 3177603622 [EditorId] 3590094171 [Version] 1048832 [Id] WindowsPlayer(User-PC) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [192.168.0.12:55123]...
+PlayerConnection accepted from [192.168.0.12] handle:0x278
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56622
+PlayerConnection already initialized - listening to [192.168.0.12:55123]
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 745M (ID=0xfe3)
+    Vendor:   NVIDIA
+    VRAM:     1991 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.062 seconds
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build3_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.903185 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1924 -> priority: 1 
+  Thread -> id: 784 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.171412 ms
+System memory in use before: 16.2 MB.
+System memory in use after: 16.2 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 386.
+Total: 0.245430 ms (FindLiveObjects: 0.016510 ms CreateObjectMapping: 0.019188 ms MarkObjects: 0.193667 ms  DeleteObjects: 0.011602 ms)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:284)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: PRESSURE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:282)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:282)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: ZONE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:282)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:282)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:282)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: ZONE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:284)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:284)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:284)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:284)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: PRESSURE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: ZONE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: PRESSURE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: PRESSURE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Hit registered
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Charicter:Damage(Int32, Single, Single, Single, Single, eAttackType, Single, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:295)
+Charicter:AttackEnemy(Charicter, Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\Charicter.cs:280)
+GameManager:HitCheck(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:282)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:94)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/Charicter.cs Line: 295)
+
+Hit detected
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+State_Machine:StateCheck() (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:267)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:188)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/State_Machine.cs Line: 267)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: WAIT
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: FREE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Going to state: POKE
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AI_Input:Cycle(Single, eStates) (at C:\Users\User\Desktop\MM\Assets\Scripts\States\InputHandler\AI_Input.cs:90)
+State_Machine:Cycle(Single) (at C:\Users\User\Desktop\MM\Assets\Scripts\State_Machine.cs:184)
+GameManager:Update() (at C:\Users\User\Desktop\MM\Assets\Scripts\GameManager.cs:89)
+ 
+(Filename: C:/Users/User/Desktop/MM/Assets/Scripts/States/InputHandler/AI_Input.cs Line: 90)
+
+Waiting for finish

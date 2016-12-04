@@ -1,0 +1,40 @@
+Mono path[0] = 'C:/Users/User/Desktop/MM/Builds/Build2_Data/Managed'
+Mono path[1] = 'C:/Users/User/Desktop/MM/Builds/Build2_Data/Mono'
+Mono config path = 'C:/Users/User/Desktop/MM/Builds/Build2_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/User/Desktop/MM/Builds/Build2_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55466
+Multi-casting "[IP] 192.168.0.5 [Port] 55466 [Flags] 3 [Guid] 4273705757 [EditorId] 2438451975 [Version] 1048832 [Id] WindowsPlayer(User-PC) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [192.168.0.5:55466]...
+PlayerConnection accepted from [192.168.0.5] handle:0x278
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56757
+PlayerConnection already initialized - listening to [192.168.0.5:55466]
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 745M (ID=0xfe3)
+    Vendor:   NVIDIA
+    VRAM:     1991 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.062 seconds
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\User\Desktop\MM\Builds\Build2_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.851871 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2434 -> priority: 1 
+  Thread -> id: 2198 -> priority: 1 
+Waiting for finish

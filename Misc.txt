@@ -1,0 +1,27 @@
+input
+update
+collisions
+physics (movements)
+
+
+
+left
+right
+up
+down
+
+attack1
+attack2
+jump
+block
+
+throw = block + attack1 || attack2
+slide = down + attack1 || attack2
+fall = down + jump
+climb = up 
+end climbing = jump
+
+
+TODO:
+change it so a jump goes from e.g. walk -> pre/post Jump -> fallng
+this means pre/post Jump will give the player there launch velocity
