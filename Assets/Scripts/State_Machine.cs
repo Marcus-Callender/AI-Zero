@@ -212,6 +212,8 @@ public class State_Machine : MonoBehaviour
 	{
 		m_weaponType1 = weapon1;
 		m_weaponType2 = weapon2;
+
+		//m_inputHandler.GiveWeapons(m_weaponType1, m_weaponType2);
 	}
 
 	private void BuildWeapons()

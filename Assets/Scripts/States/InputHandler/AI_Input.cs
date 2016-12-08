@@ -68,6 +68,9 @@ public class AI_Input : BaseInputHandler
 	private float[] m_timers = new float[(int)eAI_InputArray.TOTAL_INPUTS];
 	private int m_statusResult = 0;
 
+	private int[] m_actionProbabilaties = new int[(int)eAI_Actions.FREE];
+	private int m_actionProbabilitiesTotal = 0;
+
 	public override void Initialize()
 	{
 		m_currentAction = eAI_Actions.WAIT;
@@ -274,6 +277,41 @@ public class AI_Input : BaseInputHandler
 	{
 		m_weapon1 = weapon1;
 		m_weapon2 = weapon2;
+
+		for (int z = 0; z < (int)eAI_Actions.FREE; z++)
+		{
+			m_actionProbabilaties[z] = 2;
+		}
+
+		if (m_weapon1 == eWeaponType.BUSTER || m_weapon2 == eWeaponType.BUSTER)
+		{
+			m_actionProbabilaties[(int)eAI_Actions.ZONE] += 2;
+			m_actionProbabilaties[(int)eAI_Actions.POKE] += 1;
+		}
+		else if (m_weapon1 == eWeaponType.SABER || m_weapon2 == eWeaponType.SABER)
+		{
+			m_actionProbabilaties[(int)eAI_Actions.PRESSURE] += 2;
+			m_actionProbabilaties[(int)eAI_Actions.ANTI_AIR] += 1;
+		}
+		else if (m_weapon1 == eWeaponType.TONFA || m_weapon2 == eWeaponType.TONFA)
+		{
+			m_actionProbabilaties[(int)eAI_Actions.POKE] += 2;
+			m_actionProbabilaties[(int)eAI_Actions.PRESSURE] += 1;
+		}
+		else if (m_weapon1 == eWeaponType.SHIELD || m_weapon2 == eWeaponType.SHIELD)
+		{
+			m_actionProbabilaties[(int)eAI_Actions.ANTI_AIR] += 2;
+			m_actionProbabilaties[(int)eAI_Actions.ZONE] += 1;
+		}
+
+		int temp = 0;
+
+		for (int z = 0; z < (int)eAI_Actions.FREE; z++)
+		{
+			temp += m_actionProbabilaties[z];
+		}
+
+		m_actionProbabilitiesTotal = temp;
 	}
 
 	public eAI_Actions Zone(float deltaTime, eStates myState, bool stateChanged)
@@ -448,7 +486,22 @@ public class AI_Input : BaseInputHandler
 		//return (eAI_Actions)DEBUG_STATE;
 
 		//return eAI_Actions.PRESSURE;
-		return (eAI_Actions)Random.Range(0, 6);
+		//return (eAI_Actions)Random.Range(0, 6);
+
+		int roll = Random.Range(0, m_actionProbabilitiesTotal);
+		int total = 0;
+
+		for (int z = 0; z < (int)eAI_Actions.FREE; z++)
+		{
+			total += m_actionProbabilaties[z];
+
+			if (roll > total)
+			{
+				return (eAI_Actions)z;
+			}
+		}
+
+		return eAI_Actions.DEFFEND;
 	}
 
 	public eAI_Actions Wait(float deltaTime, eStates myState, bool stateChanged)
