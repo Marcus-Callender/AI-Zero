@@ -34,6 +34,8 @@ public enum eAI_SubAction
 	THROW,
 	SLIDE,
 
+	JUMP_UP_LEDGE,
+
 	SABER_MOVE,
 	ANTI_AIR_SHIELD,
 	BUSTER_BARAGE
@@ -70,6 +72,8 @@ public class AI_Input : BaseInputHandler
 
 	private int[] m_actionProbabilaties = new int[(int)eAI_Actions.FREE];
 	private int m_actionProbabilitiesTotal = 0;
+	private bool m_movingLeft = false;
+	private bool m_movingLeftRefrence = false;
 
 	public override void Initialize()
 	{
@@ -119,6 +123,11 @@ public class AI_Input : BaseInputHandler
 		{
 			RunSubAction(deltaTime, myState, stateChanged);
 		}
+
+		if (m_input[(int)eInputs.LEFT])
+			m_movingLeft = true;
+		else if (m_input[(int)eInputs.RIGHT])
+			m_movingLeft = false;
 	}
 
 	void RunAction(float deltaTime, eStates myState, bool stateChanged)
@@ -162,6 +171,10 @@ public class AI_Input : BaseInputHandler
 		else if (m_subAction == eAI_SubAction.SLIDE)
 		{
 			SlideSubAction(deltaTime, myState, stateChanged);
+		}
+		else if (m_subAction == eAI_SubAction.JUMP_UP_LEDGE)
+		{
+			JumpLedgeSubAction(deltaTime, myState, stateChanged);
 		}
 		else
 		{
@@ -700,6 +713,46 @@ public class AI_Input : BaseInputHandler
 				m_subAction = eAI_SubAction.NONE;
 			else
 				m_subStatePosition++;
+		}
+	}
+
+	void JumpLedgeSubAction(float deltaTime, eStates myState, bool stateChanged)
+	{
+		if (m_subStatePosition == 0)
+			m_movingLeftRefrence = m_movingLeft;
+
+		if (m_subStatePosition < 18)
+		{
+			if (m_movingLeftRefrence)
+				m_input[(int)eInputs.RIGHT] = true;
+			else
+				m_input[(int)eInputs.LEFT] = true;
+
+			m_subStatePosition++;
+		}
+		else if (m_subStatePosition < 24)
+		{
+			if (m_movingLeftRefrence)
+				m_input[(int)eInputs.LEFT] = true;
+			else
+				m_input[(int)eInputs.RIGHT] = true;
+
+			m_subStatePosition++;
+		}
+		else if (m_subStatePosition < 30)
+		{
+			if (m_movingLeftRefrence)
+				m_input[(int)eInputs.LEFT] = true;
+			else
+				m_input[(int)eInputs.RIGHT] = true;
+
+			m_input[(int)eInputs.JUMP] = true;
+
+			m_subStatePosition++;
+		}
+		else
+		{
+			m_subAction = eAI_SubAction.NONE;
 		}
 	}
 }
