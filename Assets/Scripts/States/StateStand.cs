@@ -5,6 +5,7 @@ public class StateStand : BaseState
 {
 	public override void Enter(eStates m_priviousState)
 	{
+		// resets the size of the charicters hitbox
 		m_me.resetHeight();
 	}
 
@@ -16,9 +17,6 @@ public class StateStand : BaseState
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
 		m_me.setVelocity(0.0f, -75.0f * deltaTime);
-
-		//TODO clean this!
-		//m_me.addToVelocity(0.0f, -25.0f * deltaTime);
 	}
 
 	public override void Input(bool[] inputs, ref eStates m_currentState)
@@ -52,6 +50,7 @@ public class StateStand : BaseState
 
 	public override void NotCollideVertical(ref eStates m_currentState)
 	{
+		// if the charicter is pushed of an edge moves to the falling state
 		m_currentState = eStates.FALLING;
 	}
 }

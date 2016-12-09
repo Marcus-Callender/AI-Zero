@@ -51,6 +51,7 @@ public class HealthBar : MonoBehaviour
 	{
 		if (m_style == null)
 		{
+			// if m_style dosen't exist creates a style
 			m_style = new GUIStyle();
 			m_style.fontSize = 28;
 		}

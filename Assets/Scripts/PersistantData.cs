@@ -39,6 +39,7 @@ public class PersistantData : MonoBehaviour
 
 	public void SetWeapons(int player, eWeaponType weapon1, eWeaponType weapon2)
 	{
+		// stores the selected weapons to be retreved later in a diffrent scene
 		if (player >= 0 && player < 2)
 		{
 			m_SelectedWeapons[player, 0] = weapon1;
@@ -48,6 +49,7 @@ public class PersistantData : MonoBehaviour
 
 	public eWeaponType GetWeapons(int player, int weaponType)
 	{
+		// retreves the required weapon
 		return m_SelectedWeapons[player, weaponType];
 	}
 }

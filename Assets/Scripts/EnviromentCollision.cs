@@ -8,21 +8,21 @@ public class EnviromentCollision : MonoBehaviour
 	private float m_top;
 	private float m_bottom;
 	private Transform m_transform;
-
-	// Use this for initialization
+	
 	void Start()
 	{
 		m_transform = GetComponent<Transform>();
 
+		// gets data for where the boundries of the colision box are
 		m_left = m_transform.position.x - (m_transform.localScale.x * 0.5f);
 		m_right = m_transform.position.x + (m_transform.localScale.x * 0.5f);
 		m_top = m_transform.position.y + (m_transform.localScale.y * 0.5f);
 		m_bottom = m_transform.position.y - (m_transform.localScale.y * 0.5f);
 	}
-
-	// Update is called once per frame 
+	
 	void Update()
 	{
+		// draws debug lines for where the sides of the collision box is
 		Debug.DrawLine(new Vector3(m_left, m_top), new Vector3(m_left, m_bottom), Color.blue);
 		Debug.DrawLine(new Vector3(m_right, m_bottom),new Vector3(m_right, m_top) , Color.blue);
 		Debug.DrawLine(new Vector3(m_right, m_top),new Vector3(m_left, m_top) , Color.blue);

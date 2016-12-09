@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// UNUSED
+
 public class Controler : MonoBehaviour {
 
 	// Use this for initialization
