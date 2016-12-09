@@ -5,11 +5,13 @@ public class StateGuard : BaseState
 {
 	public override void Enter(eStates m_priviousState)
 	{
+		// tells the fighter data to block incoming attacks
 		m_me.SetGuarding(true);
 	}
 
 	public override void Exit()
 	{
+		// tells the fighter data to stop blocking attacks
 		m_me.SetGuarding(false);
 	}
 
@@ -29,6 +31,7 @@ public class StateGuard : BaseState
 			else if (inputs[(int)eInputs.ATTACK_1] || inputs[(int)eInputs.ATTACK_2])
 				m_currentState = eStates.THROW;
 
+			// allows the player to switch the side thy are facing while blocking
 			else if (inputs[(int)eInputs.LEFT])
 				m_me.setLeft(true);
 

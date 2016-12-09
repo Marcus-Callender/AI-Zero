@@ -26,6 +26,7 @@ public class StateHitAir : BaseState
 
 	public override void CollideVertical(ref eStates m_currentState)
 	{
+		// returns to normal after coliding with ground or KO'D if player has no health remaining
 		if (m_me.IsKOd())
 			m_currentState = eStates.KO_D;
 		else

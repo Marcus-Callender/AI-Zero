@@ -13,7 +13,6 @@ public class StateSaber : BaseState
 	{
 		m_timer = m_slideTime;
 		m_hitboxID = -1;
-		//m_hitboxID = m_me.AddHitbox(m_me.getX(), m_me.getY(), 3.75f, 4.75f, 3, -3.0f, 6.0f, 0.75f, 0.2f, eAttackType.STRIKE);
 	}
 
 	public override void Exit()

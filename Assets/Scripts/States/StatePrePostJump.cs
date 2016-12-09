@@ -17,6 +17,7 @@ public class StatePrePostJump : BaseState
 		m_timer = m_timeInState;
 		m_me.setVelocity(0.0f, 0.0f);
 
+		// determans when the player is contacting or leaving the ground
 		if (m_priviousState == eStates.FALLING)
 			m_preJump = false;
 		else
@@ -34,6 +35,7 @@ public class StatePrePostJump : BaseState
 
 		if (m_timer <= 0.0f)
 		{
+			// if the time in the state has gone by, transitions to the next state
 			if (m_preJump)
 			{
 				m_me.setVelocity(m_movementSpeed * m_direction, m_launch);
@@ -46,6 +48,7 @@ public class StatePrePostJump : BaseState
 
 	public override void Input(bool[] inputs, ref eStates m_currentState)
 	{
+		// gets the desired x velocity from user input
 		if (inputs[(int)eInputs.LEFT])
 			m_direction = -1.0f;
 		else if (inputs[(int)eInputs.RIGHT])

@@ -26,8 +26,7 @@ public class Charicter : MonoBehaviour
 	private EffectImage m_effect = null;
 	private bool m_invincable;
 	private float m_timeStop = 0.0f;
-
-	// Use this for initialization
+	
 	public void Initialize(SpriteRenderer sprite)
 	{
 		m_tansform = GetComponent<Transform>();
@@ -52,8 +51,7 @@ public class Charicter : MonoBehaviour
 		m_effect = GetComponentInChildren<EffectImage>();
 		m_effect.Initialize();
 	}
-
-	// Update is called once per frame
+	
 	public void F_Update(float deltaTime)
 	{
 		if (m_velocity[0] > 0.1)
@@ -102,44 +100,17 @@ public class Charicter : MonoBehaviour
 	{
 		m_velocity[0] += x;
 		m_velocity[1] += y;
-
-		clampVelocity();
 	}
 
 	public void setVelocity(float x, float y)
 	{
 		m_velocity[0] = x;
 		m_velocity[1] = y;
-
-		//clampVelocity();
 	}
 
 	public void setXVelocity(float x)
 	{
 		m_velocity[0] = x;
-
-		//clampVelocity();
-	}
-
-	private void clampVelocity()
-	{
-		//if (m_velocity[0] > m_maxVelocity[0])
-		//{
-		//	m_velocity[0] = m_maxVelocity[0];
-		//}
-		//else if (m_velocity[0] < -m_maxVelocity[0])
-		//{
-		//	m_velocity[0] = -m_maxVelocity[0];
-		//}
-
-		//if (m_velocity[1] > m_maxVelocity[1])
-		//{
-		//	m_velocity[1] = m_maxVelocity[1];
-		//}
-		//else if (m_velocity[1] < -m_maxVelocity[1])
-		//{
-		//	m_velocity[1] = -m_maxVelocity[1];
-		//}
 	}
 
 	public void setLeft(bool left)

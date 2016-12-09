@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// UNUSED
+
 public class BaseAttack : MonoBehaviour
 {
 	public virtual void InitializeAnimation(AnimClass anim, Sprite[] sprites, int animID)

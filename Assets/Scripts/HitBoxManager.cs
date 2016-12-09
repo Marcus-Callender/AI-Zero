@@ -4,8 +4,7 @@ using System.Collections;
 public class HitBoxManager : MonoBehaviour
 {
 	private Hitbox[] m_hitboxes = new Hitbox[5];
-
-	// Use this for initialization
+	
 	public void Initialize()
 	{
 		for (int z = 0; z < 5; z++)
@@ -13,8 +12,7 @@ public class HitBoxManager : MonoBehaviour
 			m_hitboxes[z] = null;
 		}
 	}
-
-	// Update is called once per frame
+	
 	public void Cycle()
 	{
 		for (int z = 0; z < 5; z++)
@@ -28,13 +26,18 @@ public class HitBoxManager : MonoBehaviour
 	{
 		for (int z = 0; z < 5; z++)
 		{
+			// finds an avalable space in the array and returns its position
 			if (m_hitboxes[z] == null)
 			{
 				m_hitboxes[z] = new Hitbox(xPos, yPos, width, height);
+
+				//Debug.Log("Hitbox " + z + " created");
+
 				return z;
 			}
 		}
 
+		Debug.Log("addHitbox: no avalable space in array.");
 		return -1;
 	}
 
@@ -42,6 +45,7 @@ public class HitBoxManager : MonoBehaviour
 	{
 		for (int z = 0; z < 5; z++)
 		{
+			// finds an avalable space in the array and returns its position
 			if (m_hitboxes[z] == null)
 			{
 				m_hitboxes[z] = new Hitbox(xPos, yPos, width, height, damage, xKnock, yKnock, hitstun, blockstun, type);
@@ -52,6 +56,7 @@ public class HitBoxManager : MonoBehaviour
 			}
 		}
 
+		Debug.Log("addHitbox: no avalable space in array.");
 		return -1;
 	}
 
@@ -99,12 +104,12 @@ public class HitBoxManager : MonoBehaviour
 
 		return -1;
 	}
-
-	//public bool IsRectInside(float x, float y, float width, float height)
+	
 	public int IsRectInside(float left, float right, float top, float bottom)
 	{
 		for (int z = 0; z < 5; z++)
 		{
+			// checks if any of the coordanites are contained within any of the hitboxes. if so returns the first matching hitbox
 			if (m_hitboxes[z] != null)
 				if (m_hitboxes[z].IsRectInside(left, right, top, bottom))
 					return z;
@@ -203,12 +208,14 @@ public class Hitbox
 
 	public void Update()
 	{
+		// draws debug lines to show the position of the hitbox on the scene view
+
 		if (m_enabled)
 		{
-			Debug.DrawLine(new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))), new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos)), Color.red);
-			Debug.DrawLine(new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))), new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos)), Color.red);
-			Debug.DrawLine(new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))), new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))), Color.red);
-			Debug.DrawLine(new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos)), new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos)), Color.red);
+			Debug.DrawLine(new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))),	new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos)), Color.red);
+			Debug.DrawLine(new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))),	new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos)), Color.red);
+			Debug.DrawLine(new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))),	new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos + (m_height * 0.5f))), Color.red);
+			Debug.DrawLine(new Vector3((m_xPos - (m_width * 0.5f)), (m_yPos)),						new Vector3((m_xPos + (m_width * 0.5f)), (m_yPos)), Color.red);
 		}
 	}
 
@@ -226,6 +233,7 @@ public class Hitbox
 
 	public bool IsPointInside(float x, float y)
 	{
+		// if disabled always counts the hitbox as not matching coordanets
 		if (!m_enabled)
 			return false;
 

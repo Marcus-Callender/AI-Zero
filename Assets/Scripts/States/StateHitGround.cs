@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// UNUSED
+
 public class StateHitGround : BaseState
 {
 	public override void Enter(eStates m_priviousState)
