@@ -36,8 +36,7 @@ public class Projectile : MonoBehaviour
 
 		m_hitboxID = hitBoxManager.addHitbox(m_position[0], m_position[1] - 1.0f, 2.0f, 4.0f, 3, -4.0f, 8.0f, 0.75f, 0.2f, eAttackType.PROJECTILE);
 	}
-
-	// Update is called once per frame
+	
 	public virtual void Cycle(float deltaTime, HitBoxManager hitBoxManager)
 	{
 		if (m_active)

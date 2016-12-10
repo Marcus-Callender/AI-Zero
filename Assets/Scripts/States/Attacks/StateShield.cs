@@ -10,11 +10,14 @@ public class StateShield : BaseState
 	private float m_timer = 0.0f;
 	private bool m_thrown = false;
 	private int m_verticalInput = 0;
+	private float m_shieldXSpeed = 0.0f;
+	private float m_shieldYSpeed = 0.0f;
 
 	public override void Initialize(Charicter me)
 	{
 		m_me = me;
 
+		// adds the shield object to the player datas list of projectiles
 		m_me.AddProjectile(m_shield);
 	}
 
@@ -33,8 +36,7 @@ public class StateShield : BaseState
 	{
 		m_thrown = false;
 	}
-
-	// Update is called once per frame
+	
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
 		m_timer -= deltaTime;
@@ -45,35 +47,60 @@ public class StateShield : BaseState
 			m_currentState = eStates.STANDING;
 		else if (m_timer < m_throwTime && !m_thrown)
 		{
-			//m_shield.Fire(m_me, 9.0f * m_me.getIntFacingLeft(), 0.0f, m_me.GetHitboxManager(), 2.0f);
-			m_shield.Fire(m_me, 9.0f * m_me.getIntFacingLeft(), 4.5f * m_verticalInput, m_me.GetHitboxManager(), 2.0f);
+			float xVal = 0.0f;
+			float yVal = 0.0f;
+
+			// if the time in the state is past the fireing time and the shield hasen't be fired yet, fires the shield
+			//m_shield.Fire(m_me, 9.0f * m_me.getIntFacingLeft(), 4.5f * m_verticalInput, m_me.GetHitboxManager(), 2.0f);
+			m_shield.Fire(m_me, m_shieldXSpeed, m_shieldYSpeed, m_me.GetHitboxManager(), 2.0f);
 			m_thrown = true;
 		}
 	}
 
 	public override void Input(bool[] inputs, ref eStates m_currentState)
 	{
-		if (inputs[(int)eInputs.LEFT] || inputs[(int)eInputs.RIGHT])
+		//if (inputs[(int)eInputs.LEFT] || inputs[(int)eInputs.RIGHT])
+		//{
+		//	if (inputs[(int)eInputs.UP])
+		//		m_verticalInput = 1;
+
+		//	else if (inputs[(int)eInputs.DOWN])
+		//		m_verticalInput = -1;
+
+		//	else
+		//		m_verticalInput = 0;
+		//}
+		//else
+		//{
+		//	if (inputs[(int)eInputs.UP])
+		//		m_verticalInput = 2;
+
+		//	else if (inputs[(int)eInputs.DOWN])
+		//		m_verticalInput = -2;
+
+		//	else
+		//		m_verticalInput = 0;
+		//}
+
+		if ((inputs[(int)eInputs.LEFT] || inputs[(int)eInputs.RIGHT]) && inputs[(int)eInputs.UP])
 		{
-			if (inputs[(int)eInputs.UP])
-				m_verticalInput = 1;
-
-			else if (inputs[(int)eInputs.DOWN])
-				m_verticalInput = -1;
-
-			else
-				m_verticalInput = 0;
+			m_shieldXSpeed = 6.364f * m_me.getIntFacingLeft();
+			m_shieldYSpeed = 6.364f;
+		}
+		//else if ((inputs[(int)eInputs.LEFT] || inputs[(int)eInputs.RIGHT]) && inputs[(int)eInputs.DOWN])
+		//{
+		//	m_shieldXSpeed = 6.364f * m_me.getIntFacingLeft();
+		//	m_shieldYSpeed = -6.364f;
+		//}
+		else if (inputs[(int)eInputs.UP])
+		{
+			m_shieldXSpeed = 0.0f;
+			m_shieldYSpeed = 9.0f;
 		}
 		else
 		{
-			if (inputs[(int)eInputs.UP])
-				m_verticalInput = 2;
-
-			else if (inputs[(int)eInputs.DOWN])
-				m_verticalInput = -2;
-
-			else
-				m_verticalInput = 0;
+			m_shieldXSpeed = 9.0f * m_me.getIntFacingLeft();
+			m_shieldYSpeed = 0.0f;
 		}
 	}
 }

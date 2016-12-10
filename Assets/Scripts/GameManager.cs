@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour
 
 	private float m_closestDistance = -10.0f;
 	private float m_farthestDistance = -25.0f;
-
-	// Use this for initialization
+	
 	void Start()
 	{
 		//for (int z = 0; z < m_walls.Length; z++)
@@ -57,8 +56,7 @@ public class GameManager : MonoBehaviour
 			m_charicterStates[z].Initialize();
 		}
 	}
-
-	// Update is called once per frame
+	
 	void Update()
 	{
 		//float deltaTime = Time.deltaTime;
