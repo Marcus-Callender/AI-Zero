@@ -12,9 +12,11 @@ public class StateSaber : BaseState
 	public override void Enter(eStates m_priviousState)
 	{
 		m_timer = m_slideTime;
+		// resets the hitbox index so the code knows when the hitbox has been created
 		m_hitboxID = -1;
 	}
 
+	// ensures the hitbox is removed
 	public override void Exit()
 	{
 		m_me.RemoveHitbox(m_hitboxID);
@@ -23,6 +25,7 @@ public class StateSaber : BaseState
 	// Update is called once per frame
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
+		// updates the position of the hitbox
 		m_me.SetHitboxPos(m_hitboxID, m_me.getX(), m_me.getY());
 
 		m_me.addToVelocity(0.0f, -75.0f * deltaTime);
@@ -32,9 +35,11 @@ public class StateSaber : BaseState
 		if (m_timer <= 0.0f)
 			m_currentState = eStates.STANDING;
 
+		// removes the hitbox after the active time
 		else if (m_timer <= m_attackStopTime)
 			m_me.RemoveHitbox(m_hitboxID);
 
+		// creates the hitbox if it dosen't already exist
 		else if (m_timer <= m_attackStartTime && m_hitboxID == -1)
 			m_hitboxID = m_me.AddHitbox(m_me.getX(), m_me.getY(), 3.75f, 4.75f, 3, -3.0f, 6.0f, 0.75f, 0.2f, eAttackType.STRIKE);
 	}
