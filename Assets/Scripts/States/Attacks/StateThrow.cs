@@ -13,15 +13,13 @@ public class StateThrow : BaseState
 	{
 		m_timer = m_stateTime;
 		m_hitboxID = -1;
-		//m_hitboxID = m_me.AddHitbox(m_me.getX(), m_me.getY(), 3.75f, 4.75f, 3, -3.0f, 6.0f, 0.75f, 0.2f, eAttackType.THROW);
 	}
 
 	public override void Exit()
 	{
 		m_me.RemoveHitbox(m_hitboxID);
 	}
-
-	// Update is called once per frame
+	
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
 		m_me.SetHitboxPos(m_hitboxID, m_me.getX(), m_me.getY());

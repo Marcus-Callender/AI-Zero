@@ -6,18 +6,6 @@ public class SelectZone : MonoBehaviour, IPointerClickHandler
 {
 	private bool m_clicked = false;
 
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	/*void Update()
-	{
-
-	}*/
-
 	void OnMouseDown()
 	{
 		m_clicked = true;

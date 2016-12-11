@@ -12,11 +12,11 @@ public class StateWalk : BaseState
 	public override void Exit()
 	{
 	}
-
-	// Update is called once per frame
+	
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
-		m_me.addToVelocity(0.0f, -75.0f * deltaTime);
+		// sets the charicters x velocity relative to the charicters orientation
+		m_me.setVelocity(m_movementSpeed * m_me.getIntFacingLeft(), -75.0f * deltaTime);
 	}
 
 	public override void Input(bool[] inputs, ref eStates m_currentState)
@@ -39,16 +39,15 @@ public class StateWalk : BaseState
 		}
 		else if (inputs[(int)eInputs.JUMP])
 		{
-			//m_currentState = eStates.JUMPING;
 			m_currentState = eStates.PRE_POST_JUMP;
 		}
 		else if (inputs[(int)eInputs.LEFT])
 		{
-			m_me.setVelocity(-m_movementSpeed, 0.0f);
+			m_me.setLeft(true);
 		}
 		else if (inputs[(int)eInputs.RIGHT])
 		{
-			m_me.setVelocity(m_movementSpeed, 0.0f);
+			m_me.setLeft(false);
 		}
 		else
 		{
@@ -56,6 +55,7 @@ public class StateWalk : BaseState
 		}
 	}
 
+	// if there is no floor under the charicter, moves to falling state
 	public override void NotCollideVertical(ref eStates m_currentState)
 	{
 		m_currentState = eStates.FALLING;

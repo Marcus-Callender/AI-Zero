@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// a list of states the charicter can be in
 public enum eStates
 {
 	STANDING,
@@ -25,6 +26,7 @@ public enum eStates
 	SIZE_OF_E_STATES
 }
 
+// a list of posible inputs
 public enum eInputs
 {
 	UP,
@@ -40,6 +42,7 @@ public enum eInputs
 	SIZE_OF_E_INPUTS
 }
 
+// a list of the diffrent types of attack
 public enum eAttackType
 {
 	STRIKE,
@@ -136,8 +139,9 @@ public class State_Machine : MonoBehaviour
 		m_animations.animRepeat((int)eStates.FALLING);
 
 		m_animations.addAnim(); // SLIDING
-		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[26], 0.01f);
-		m_animations.animRepeat((int)eStates.SLIDING);
+		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[3], 0.2f);
+		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[26], 0.5f);
+		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[3], 0.2f);
 
 		m_animations.addAnim(); // BLOCK
 		m_animations.addKeyFrame((int)eStates.BLOCK, m_sprites[51], 0.01f);
@@ -150,7 +154,6 @@ public class State_Machine : MonoBehaviour
 		m_animations.addKeyFrame((int)eStates.THROW, m_sprites[3], 5.0f / 60.0f);
 		m_animations.addKeyFrame((int)eStates.THROW, m_sprites[27], 8.0f / 60.0f);
 		m_animations.addKeyFrame((int)eStates.THROW, m_sprites[18], 12.0f / 60.0f);
-		//m_animations.animRepeat((int)eStates.THROW);
 
 		m_animations.addAnim(); // HIT_STUN
 		m_animations.addKeyFrame((int)eStates.HIT_STUN, m_sprites[20], 0.01f);

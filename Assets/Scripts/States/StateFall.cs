@@ -5,7 +5,7 @@ public class StateFall : BaseState
 {
 	private float m_gravity = -25.0f;
 
-	private float m_airAcceleration = 4.0f;
+	private float m_airAcceleration = 0.35f;
 	private float m_maxAirSpeed = 6.0f;
 	private float m_airSpeed = 0.0f;
 
@@ -22,8 +22,7 @@ public class StateFall : BaseState
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
 		m_me.addToVelocity(0.0f, m_gravity * deltaTime);
-		//m_me.setXVelocity(m_airSpeed);
-		//m_me.addToVelocity(m_airSpeed, m_gravity * deltaTime);
+		m_me.setXVelocity(m_airSpeed);
 	}
 
 	public override void Input(bool[] inputs, ref eStates m_currentState)
@@ -32,20 +31,21 @@ public class StateFall : BaseState
 		{
 			m_airSpeed += m_airAcceleration;
 
-			if (m_airSpeed < m_maxAirSpeed)
+			if (m_airSpeed > m_maxAirSpeed)
 				m_airSpeed = m_maxAirSpeed;
 		}
 		else if (inputs[(int)eInputs.LEFT])
 		{
 			m_airSpeed -= m_airAcceleration;
 
-			if (m_airSpeed > -m_maxAirSpeed)
+			if (m_airSpeed < -m_maxAirSpeed)
 				m_airSpeed = -m_maxAirSpeed;
 		}
 	}
 
 	public override void CollideVertical(ref eStates m_currentState)
 	{
+		// if there is ground under the charicter, moves to the standing state
 		m_currentState = eStates.STANDING;
 	}
 }

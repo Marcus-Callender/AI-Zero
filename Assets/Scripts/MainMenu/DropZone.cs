@@ -4,19 +4,6 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	/*void Update()
-	{
-
-	}*/
-
 	public void GiveDragable(Dragable dragObject)
 	{
 		dragObject.SetBaseParent(this.transform);

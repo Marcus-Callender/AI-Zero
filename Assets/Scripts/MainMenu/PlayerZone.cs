@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// this controls all the menu objects (select zones / weapon icons) for a select player
+
 public class PlayerZone : MonoBehaviour
 {
-	//private float m_width = 1366;
-	//private float m_height = 768;
-
 	private Dragable[] m_dragables;
 	private DropZone[] m_dropZones;
 	private WeaponSlot[] m_weaponSlots;
@@ -63,6 +62,7 @@ public class PlayerZone : MonoBehaviour
 
 	public void OnPlay()
 	{
+		// gives the persistant data the selected weapons, so it can cary the data between scenes
 		m_data.SetWeapons(m_playerZone, m_weaponSlots[0].GetWeaponType(), m_weaponSlots[1].GetWeaponType());
 	}
 }

@@ -7,23 +7,25 @@ public class MainMenu : MonoBehaviour
 	public SelectZone m_startButton;
 
 	private PlayerZone[] m_playerZones;
-
-	// Use this for initialization
+	
 	void Start()
 	{
+		// retreves all the player zones through code
 		m_playerZones = GetComponentsInChildren<PlayerZone>();
 	}
-
-	// Update is called once per frame
+	
 	void Update()
 	{
+		// if the start button gets clicked
 		if (m_startButton.GetClicked())
 		{
+			// tells the player zones to give persistant data the selcected weapons
 			for (int z = 0; z < m_playerZones.Length; z++)
 			{
 				m_playerZones[z].OnPlay();
 			}
 
+			// loads the game
 			SceneManager.LoadScene("TestMM", LoadSceneMode.Single);
 		}
 	}

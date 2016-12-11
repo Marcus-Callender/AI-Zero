@@ -47,9 +47,6 @@ public class StateShield : BaseState
 			m_currentState = eStates.STANDING;
 		else if (m_timer < m_throwTime && !m_thrown)
 		{
-			float xVal = 0.0f;
-			float yVal = 0.0f;
-
 			// if the time in the state is past the fireing time and the shield hasen't be fired yet, fires the shield
 			m_shield.Fire(m_me, m_shieldXSpeed, m_shieldYSpeed, m_me.GetHitboxManager(), 2.0f);
 			m_thrown = true;
@@ -58,6 +55,7 @@ public class StateShield : BaseState
 
 	public override void Input(bool[] inputs, ref eStates m_currentState)
 	{
+		// allows the player to control the angle the shield is thrown at
 		if ((inputs[(int)eInputs.LEFT] || inputs[(int)eInputs.RIGHT]) && inputs[(int)eInputs.UP])
 		{
 			m_shieldXSpeed = 6.364f * m_me.getIntFacingLeft();
