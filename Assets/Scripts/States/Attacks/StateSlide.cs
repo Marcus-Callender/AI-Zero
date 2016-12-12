@@ -3,9 +3,9 @@ using System.Collections;
 
 public class StateSlide : BaseState
 {
-	private float m_slideTime = 0.9f;
-	private float m_slideStart = 0.7f;
-	private float m_slideEnd = 0.2f;
+	private float m_slideTime = 0.82f;
+	private float m_slideStart = 0.66f;
+	private float m_slideEnd = 0.16f;
 
 	private float m_timer;
 	private float m_slideSpeed = 8.0f;
@@ -21,9 +21,6 @@ public class StateSlide : BaseState
 		m_me.setHeight(1.2f);
 
 		m_hitboxID = -1;
-
-		// creates the attacks hitbox
-		//m_hitboxID = m_me.AddHitbox(m_me.getX(), m_me.getY(), 2.75f, 1.75f, 3, 6.0f, 12.0f, 0.0f, 0.2f, eAttackType.STRIKE);
 	}
 
 	public override void Exit()
@@ -35,20 +32,22 @@ public class StateSlide : BaseState
 	public override void Cycle(float deltaTime, ref eStates m_currentState)
 	{
 		// sets the players velocity to match the players orientation
-		if ((m_timer < m_slideStart) || (m_timer > m_slideEnd))
+		if ((m_timer > m_slideStart) || (m_timer < m_slideEnd))
 		{
+			m_me.setXVelocity(0.0f);
+			m_me.DisableHitbox(m_hitboxID);
+		}
+		else
+		{
+			// creates the hitbox if it dosen't exist
 			if (m_hitboxID == -1)
 				m_hitboxID = m_me.AddHitbox(m_me.getX(), m_me.getY(), 2.75f, 1.75f, 3, 6.0f, 12.0f, 0.0f, 0.2f, eAttackType.STRIKE);
 
+			// allignes the players velocity with there charicters orientation
 			if (m_me.getFacingLeft())
 				m_me.setXVelocity(-m_slideSpeed);
 			else
 				m_me.setXVelocity(m_slideSpeed);
-		}
-		else
-		{
-			m_me.setXVelocity(0.0f);
-			m_me.DisableHitbox(m_hitboxID);
 		}
 
 		// updates the position of the slides hitbox

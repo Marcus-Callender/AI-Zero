@@ -499,9 +499,9 @@ public class AI_Input : BaseInputHandler
 		//return (eAI_Actions)DEBUG_STATE;
 
 		//return eAI_Actions.PRESSURE;
-		//return (eAI_Actions)Random.Range(0, 6);
+		return (eAI_Actions)Random.Range(0, 6);
 
-		int roll = Random.Range(0, m_actionProbabilitiesTotal);
+		/*int roll = Random.Range(0, m_actionProbabilitiesTotal);
 		int total = 0;
 
 		for (int z = 0; z < (int)eAI_Actions.FREE; z++)
@@ -514,7 +514,7 @@ public class AI_Input : BaseInputHandler
 			}
 		}
 
-		return eAI_Actions.DEFFEND;
+		return eAI_Actions.DEFFEND;*/
 	}
 
 	public eAI_Actions Wait(float deltaTime, eStates myState, bool stateChanged)

@@ -6,6 +6,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 {
 	public void GiveDragable(Dragable dragObject)
 	{
+		// parents the new object to this
 		dragObject.SetBaseParent(this.transform);
 	}
 
@@ -13,11 +14,12 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 	{
 		if (data.pointerDrag != null)
 		{
+			// if the data receved is valid
 			Dragable dragObject = data.pointerDrag.GetComponent<Dragable>();
 
 			if (dragObject != null)
 			{
-				//if the types are compatable
+				//if the data recived is a weapon icon
 				dragObject.SetPlaceholderParent(this.transform);
 			}
 		}
@@ -27,15 +29,20 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 	{
 		if (data.pointerDrag != null)
 		{
+			// if the data receved is valid
 			Dragable dragObject = data.pointerDrag.GetComponent<Dragable>();
 
-			if ((dragObject != null) && (dragObject.GetPlaceholderParent() == this.transform))
+			if (dragObject != null)
 			{
-				dragObject.SetPlaceholderParent(dragObject.GetBaseParent());
-			}
-			else
-			{
-				dragObject.SoftSetBaseParent(this.transform);
+				// if the data is a weapon icon
+				if ((dragObject.GetPlaceholderParent() == this.transform))
+				{
+					//dragObject.SetPlaceholderParent(dragObject.GetBaseParent());
+				}
+				else
+				{
+					//dragObject.SoftSetBaseParent(this.transform);
+				}
 			}
 		}
 	}
@@ -46,13 +53,14 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 		if (dragObject != null)
 		{
-			//if the types are compatable
+			// if the data is a weapon icon, sets this as it's parent
 			dragObject.SetBaseParent(this.transform);
 		}
 	}
 
 	public int NumChildren()
 	{
+		// gets the number of objects chileded to this object
 		return GetComponentsInChildren<Dragable>().Length;
 	}
 }

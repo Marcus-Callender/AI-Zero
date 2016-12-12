@@ -6,8 +6,7 @@ public class Shield : Projectile
 	private float m_turnTime = 0.2f;
 	private float m_timerI = 0.0f;
 	private float m_Rotation = 0.0f;
-
-	// Update is called once per frame
+	
 	public override void Cycle(float deltaTime, HitBoxManager hitBoxManager)
 	{
 		base.Cycle(deltaTime, hitBoxManager);

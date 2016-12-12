@@ -139,9 +139,9 @@ public class State_Machine : MonoBehaviour
 		m_animations.animRepeat((int)eStates.FALLING);
 
 		m_animations.addAnim(); // SLIDING
-		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[3], 0.2f);
+		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[3], 0.16f);
 		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[26], 0.5f);
-		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[3], 0.2f);
+		m_animations.addKeyFrame((int)eStates.SLIDING, m_sprites[3], 0.16f);
 
 		m_animations.addAnim(); // BLOCK
 		m_animations.addKeyFrame((int)eStates.BLOCK, m_sprites[51], 0.01f);

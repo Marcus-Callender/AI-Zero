@@ -5,7 +5,7 @@ public class Charicter : MonoBehaviour
 {
 	private float[] m_position = new float[2];
 	private float[] m_velocity = new float[2];
-	//private float[] m_maxVelocity = new float[2];
+	private float m_maxFallSpeed = -20.0f;
 
 	Transform m_tansform;
 	SpriteRenderer m_sprite;
@@ -35,9 +35,6 @@ public class Charicter : MonoBehaviour
 
 		m_position[0] = m_tansform.position.x;
 		m_position[1] = m_tansform.position.y;
-
-		//m_height = transform.localScale.y /** 0.5f*/;
-		//m_width = transform.localScale.x /** 0.5f*/;
 
 		m_baseHeight = 2.4f;
 		m_height = m_baseHeight;
@@ -100,6 +97,9 @@ public class Charicter : MonoBehaviour
 	{
 		m_velocity[0] += x;
 		m_velocity[1] += y;
+
+		if (m_maxFallSpeed > m_velocity[1])
+			m_velocity[1] = m_maxFallSpeed;
 	}
 
 	public void setVelocity(float x, float y)
@@ -164,7 +164,6 @@ public class Charicter : MonoBehaviour
 	public void collideVertical(float top)
 	{
 		m_velocity[1] = 0.0f;
-		//m_position[1] = top + 0.01f;
 	}
 
 	public float predictLeft(float deltaTime)
@@ -204,7 +203,7 @@ public class Charicter : MonoBehaviour
 
 	public float getBottom()
 	{
-		return m_position[1] /*- m_height*/;
+		return m_position[1];
 	}
 
 	public void setHeight(float newHeight)
@@ -249,7 +248,6 @@ public class Charicter : MonoBehaviour
 		if (hit != -1)
 		{
 			enemy.Damage(m_hitboxManager.GetDamage(hit), m_hitboxManager.GetXKnockback(hit) * direction, m_hitboxManager.GetYKnockback(hit), m_hitboxManager.GetHitstun(hit), m_hitboxManager.GetBlockstun(hit), m_hitboxManager.GetAttackType(hit), m_position[0], m_position[1]);
-			//RemoveHitbox(hit);
 			DisableHitbox(hit);
 			//Debug.Log("Attack " + hit);
 		}
