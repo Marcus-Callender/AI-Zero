@@ -9,6 +9,7 @@ public class PlayerInput : BaseInputHandler
 	
 	public override void Initialize()
 	{
+		// initializes the values used
 		for (int z = 5; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
 		{
 			m_inputBuffers[z] = 0.0f;
@@ -18,6 +19,7 @@ public class PlayerInput : BaseInputHandler
 	
 	public override void Cycle(float deltaTime, eStates myState)
 	{
+		// reduces the indvidual timers
 		for (int z = 5; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
 		{
 			m_inputBuffers[z] -= deltaTime;
@@ -46,21 +48,6 @@ public class PlayerInput : BaseInputHandler
 		if (Input.GetButton("Block"))
 			inputs[(int)eInputs.BLOCK] = true;
 
-		/*if (Input.GetButton("Jump"))
-			inputs[(int)eInputs.JUMP] = true;
-
-		if (Input.GetButton("Attack1"))
-			inputs[(int)eInputs.ATTACK_1] = true;
-
-		if (Input.GetButton("Attack2"))
-			inputs[(int)eInputs.ATTACK_2] = true;*/
-
-		//BufferInput((int)eInputs.LEFT, Input.GetAxisRaw("Horizontal") < -0.5f);
-		//BufferInput((int)eInputs.RIGHT, Input.GetAxisRaw("Horizontal") > -0.5f);
-		//BufferInput((int)eInputs.DOWN, Input.GetAxisRaw("Vertical") < -0.5f);
-		//BufferInput((int)eInputs.UP, Input.GetAxisRaw("Vertical") > -0.5f);
-
-		//BufferInput((int)eInputs.BLOCK, Input.GetButton("Block"));
 		BufferInput((int)eInputs.JUMP, Input.GetButton("Jump"));
 		BufferInput((int)eInputs.ATTACK_1, Input.GetButton("Attack1"));
 		BufferInput((int)eInputs.ATTACK_2, Input.GetButton("Attack2"));
@@ -72,6 +59,7 @@ public class PlayerInput : BaseInputHandler
 	{
 		if (!m_bufferInUse[id])
 		{
+			// if ther buffer isn't already in use set it to in use and start the input countdown
 			m_bufferInUse[id] = true;
 			m_inputBuffers[id] = m_bufferTime;
 		}
@@ -84,6 +72,8 @@ public class PlayerInput : BaseInputHandler
 	{
 		for (int z = 5; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
 		{
+			// while the countown from pressing the button is still above 0 the button counts as just being pressed
+
 			if (m_bufferInUse[z] && (m_inputBuffers[z] > 0.0f))
 				inputs[z] = true;
 			else

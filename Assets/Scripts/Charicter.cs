@@ -33,6 +33,7 @@ public class Charicter : MonoBehaviour
 		m_hitboxManager = GetComponent<HitBoxManager>();
 		m_sprite = sprite;
 
+		// starts the position to match the charicters position
 		m_position[0] = m_tansform.position.x;
 		m_position[1] = m_tansform.position.y;
 
@@ -51,27 +52,33 @@ public class Charicter : MonoBehaviour
 	
 	public void F_Update(float deltaTime)
 	{
+		// allignes the charicter to match there orientation
 		if (m_velocity[0] > 0.1)
 			m_left = false;
 		else if (m_velocity[0] < -0.1)
 			m_left = true;
 
+		// sets the sprite to match the charicter
 		m_sprite.flipX = m_left;
 
+		// updates the charicters stun time if needed
 		if (IsInStun())
 			m_stunTime -= deltaTime;
 
 		for (int z = 0; z < m_projectileList.Length; z++)
 		{
+			// cycles all the existing projectiles
 			if (m_projectileList[z] != null)
 				m_projectileList[z].Cycle(deltaTime, m_hitboxManager);
 		}
 
+		// draws debug lines to show the charicters hurtbox
 		Debug.DrawLine(new Vector3(getLeft(), getTop()), new Vector3(getLeft(), getBottom()), Color.green);
 		Debug.DrawLine(new Vector3(getRight(), getTop()), new Vector3(getRight(), getBottom()), Color.green);
 		Debug.DrawLine(new Vector3(getLeft(), getTop()), new Vector3(getRight(), getTop()), Color.green);
 		Debug.DrawLine(new Vector3(getLeft(), getBottom()), new Vector3(getRight(), getBottom()), Color.green);
 
+		// updates all the charicters updates
 		m_hitboxManager.Cycle();
 		m_healthBar.Cycle(m_health);
 		m_effect.Cycle(deltaTime);
@@ -79,11 +86,11 @@ public class Charicter : MonoBehaviour
 
 	public void Physics(float deltaTime)
 	{
+		// moves the charicters position by there velocity
 		m_position[0] += m_velocity[0] * deltaTime;
 		m_position[1] += m_velocity[1] * deltaTime;
 
-		//Debug.Log("X Velocity " + m_velocity[0]);
-
+		// applies the new position
 		m_tansform.position = new Vector3(m_position[0], m_position[1], 0);
 	}
 
@@ -125,6 +132,7 @@ public class Charicter : MonoBehaviour
 
 	public int getIntFacingLeft()
 	{
+		// used to align velocity with charicter orientation
 		if (m_left)
 			return -1;
 
@@ -133,11 +141,13 @@ public class Charicter : MonoBehaviour
 
 	public float predictX(float deltaTime)
 	{
+		// used for checking colisions
 		return m_position[0] + m_velocity[0] * deltaTime;
 	}
 
 	public float predictY(float deltaTime)
 	{
+		// used for checking colisions
 		return m_position[1] + m_velocity[1] * deltaTime;
 	}
 
@@ -168,21 +178,25 @@ public class Charicter : MonoBehaviour
 
 	public float predictLeft(float deltaTime)
 	{
+		// used for checking colisions
 		return getLeft() + m_velocity[0] * deltaTime;
 	}
 
 	public float predictRight(float deltaTime)
 	{
+		// used for checking colisions
 		return getRight() + m_velocity[0] * deltaTime;
 	}
 
 	public float predictTop(float deltaTime)
 	{
+		// used for checking colisions
 		return getBottom() + m_velocity[1] * deltaTime;
 	}
 
 	public float predictBottom(float deltaTime)
 	{
+		// used for checking colisions
 		return getBottom() + m_velocity[1] * deltaTime;
 	}
 
@@ -247,16 +261,14 @@ public class Charicter : MonoBehaviour
 
 		if (hit != -1)
 		{
+			// if a hitbox overlaps enemy hurtbox
 			enemy.Damage(m_hitboxManager.GetDamage(hit), m_hitboxManager.GetXKnockback(hit) * direction, m_hitboxManager.GetYKnockback(hit), m_hitboxManager.GetHitstun(hit), m_hitboxManager.GetBlockstun(hit), m_hitboxManager.GetAttackType(hit), m_position[0], m_position[1]);
 			DisableHitbox(hit);
-			//Debug.Log("Attack " + hit);
 		}
 	}
 
 	public void Damage(int damage, float xKnock, float yKnock, float hitstun, float blockstun, eAttackType type, float xPos, float yPos)
 	{
-		//Debug.Log("Hit receved");
-
 		if (!m_invincable)
 		{
 			if (!m_guarding || CheckBlockSide(xPos) || (type == eAttackType.THROW))
@@ -293,6 +305,7 @@ public class Charicter : MonoBehaviour
 
 	bool CheckBlockSide(float xPos)
 	{
+		// used to see if an attack hit this charicter from the front or back
 		if (xPos > m_position[0] && m_left)
 			return true;
 
@@ -405,6 +418,8 @@ public class Charicter : MonoBehaviour
 
 	public void CollideAddToVelocity(float add)
 	{
+		// special colision used when two chricters colide
+
 		//if the vectors are going in the same direction
 		if ((add > 0.0f) == (m_velocity[0] > 0.0f))
 		{
