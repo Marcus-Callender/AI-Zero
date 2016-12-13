@@ -78,6 +78,9 @@ public class State_Machine : MonoBehaviour
 		m_inputHandler = GetComponent<BaseInputHandler>();
 		m_inputHandler.Initialize();
 
+		// tells the input handler what weapons it will be using
+		m_inputHandler.GiveWeapons(m_weaponType1, m_weaponType2);
+
 		// retreves the data for the weapons given to the chariceter
 		BuildWeapons();
 
@@ -103,6 +106,7 @@ public class State_Machine : MonoBehaviour
 		m_newState = eStates.SPAWNING;
 		m_currentState = eStates.STANDING;
 
+		// initializes the first state as spawning
 		m_stateClass[(int)m_newState].Enter(m_currentState);
 
 		// initializes all the states and gives them a refrence to this charicters data
@@ -147,6 +151,7 @@ public class State_Machine : MonoBehaviour
 		m_animations.addKeyFrame((int)eStates.BLOCK, m_sprites[51], 0.01f);
 		m_animations.animRepeat((int)eStates.BLOCK);
 
+		// gets the animaton from the selected weapons
 		m_attack1.InitializeAnimation(m_animations, m_sprites, (int)eStates.ATTACK_1);
 		m_attack2.InitializeAnimation(m_animations, m_sprites, (int)eStates.ATTACK_2);
 
@@ -183,9 +188,11 @@ public class State_Machine : MonoBehaviour
 	
 	public void Cycle(float deltaTime)
 	{
+		// sets all the inuts to null
 		ResetInputs();
 		StateCheck();
 
+		// gets inputs from the user
 		m_inputHandler.Cycle(deltaTime, m_newState);
 		m_inputHandler.Inputs(ref m_inputs);
 
@@ -195,19 +202,16 @@ public class State_Machine : MonoBehaviour
 		m_stateClass[(int)m_newState].Cycle(deltaTime, ref m_newState);
 		StateCheck();
 
+		// checks and updates the inputs
 		m_animations.setAnim((int)m_currentState);
 		m_animations.F_update(deltaTime);
 
 		m_me.F_Update(deltaTime);
-
-		/*for (int z = 0; z < m_projectiles.Count; z++)
-		{
-			m_projectiles[z].F_update(deltaTime);
-		}*/
 	}
 
 	public void GiveInputHandlerStatus(Charicter opponent, Charicter me, float deltaTime)
 	{
+		// gives the input handler the status of the battle
 		m_inputHandler.ReceveStatus(opponent, me, deltaTime);
 	}
 
@@ -215,8 +219,6 @@ public class State_Machine : MonoBehaviour
 	{
 		m_weaponType1 = weapon1;
 		m_weaponType2 = weapon2;
-
-		//m_inputHandler.GiveWeapons(m_weaponType1, m_weaponType2);
 	}
 
 	private void BuildWeapons()

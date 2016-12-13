@@ -269,10 +269,13 @@ public class Charicter : MonoBehaviour
 
 	public void Damage(int damage, float xKnock, float yKnock, float hitstun, float blockstun, eAttackType type, float xPos, float yPos)
 	{
+		// if the player is invincable, skips the damage entirely
 		if (!m_invincable)
 		{
+			//  if you are guarding & the attack isn't from behind and the attack isn't a throw
 			if (!m_guarding || CheckBlockSide(xPos) || (type == eAttackType.THROW))
 			{
+
 				Debug.Log("Hit registered");
 
 				m_wasHit = true;
@@ -284,9 +287,11 @@ public class Charicter : MonoBehaviour
 				m_stunTime = hitstun;
 				m_timeStop = 0.032f;
 
+				// sets the players velocity to the knockback
 				m_velocity[0] = xKnock;
 				m_velocity[1] = yKnock;
 
+				// plays the appropriate effect
 				if (type == eAttackType.THROW)
 					m_effect.Actiate(eAnimDisplay.THROW_SPARK);
 				else
