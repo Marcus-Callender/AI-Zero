@@ -228,17 +228,20 @@ public class State_Machine : MonoBehaviour
 
 		do
 		{
+			// if the weapons aren't assigned, give random weapons
 			if (weapon1NotAssigned)
 			{
-				m_weaponType1 = (eWeaponType)Random.Range(0, 3);
+				m_weaponType1 = (eWeaponType)Random.Range(0, 4);
 			}
 
 			if (weapon2NotAssigned)
 			{
-				m_weaponType2 = (eWeaponType)Random.Range(0, 3);
+				m_weaponType2 = (eWeaponType)Random.Range(0, 4);
 			}
-		} while (m_weaponType1 == m_weaponType2);
+		}
+		while (m_weaponType1 == m_weaponType2);
 
+		// gets the componats needed for the weapons
 		if (m_weaponType1 == eWeaponType.BUSTER)
 			m_attack1 = GetComponent<BusterAttack>();
 
@@ -273,15 +276,13 @@ public class State_Machine : MonoBehaviour
 	{
 		if (m_me.WasHit())
 		{
+			// if the charicter was hit
+
 			Debug.Log("Hit detected");
 
 			m_me.ResetWasHit();
 
-			/*if (m_me.IsLaunched())
-				m_newState = eStates.AIR_HIT_STUN;
-			else
-				m_newState = eStates.HIT_STUN;*/
-
+			// changes the state to being hit
 			m_newState = eStates.AIR_HIT_STUN;
 
 			m_stateClass[(int)m_currentState].Exit();
@@ -293,6 +294,8 @@ public class State_Machine : MonoBehaviour
 		{
 			if (m_newState != m_currentState)
 			{
+				// if the state has been changed
+
 				m_stateClass[(int)m_currentState].Exit();
 				m_stateClass[(int)m_newState].Enter(m_currentState);
 
@@ -303,6 +306,7 @@ public class State_Machine : MonoBehaviour
 
 	void ResetInputs()
 	{
+		// sets all the inputs to false
 		for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
 		{
 			m_inputs[z] = false;
