@@ -78,13 +78,10 @@ public class State_Machine : MonoBehaviour
 		m_inputHandler = GetComponent<BaseInputHandler>();
 		m_inputHandler.Initialize();
 
-		//m_attack1 = GetComponent<SaberAttack>();
-		//m_attack1 = GetComponent<TonfaAttack>();
-		//m_attack2 = GetComponent<ShieldAttack>();
-		//m_attack2 = GetComponent<BusterAttack>();
-
+		// retreves the data for the weapons given to the chariceter
 		BuildWeapons();
 
+		// retreves refrences to the scripts for teh diffrent states
 		m_stateClass[(int)eStates.STANDING] = GetComponent<StateStand>();
 		m_stateClass[(int)eStates.WALKING] = GetComponent<StateWalk>();
 		m_stateClass[(int)eStates.JUMPING] = GetComponent<StateJump>();
@@ -93,10 +90,11 @@ public class State_Machine : MonoBehaviour
 		m_stateClass[(int)eStates.SLIDING] = GetComponent<StateSlide>();
 		m_stateClass[(int)eStates.BLOCK] = GetComponent<StateGuard>();
 
+		// retreves the scripts for the given weapons from a diffrent scripts retreved from BuildWeapons()
 		m_stateClass[(int)eStates.ATTACK_1] = m_attack1.InitializeState();
 		m_stateClass[(int)eStates.ATTACK_2] = m_attack2.InitializeState();
-		m_stateClass[(int)eStates.THROW] = GetComponent<StateThrow>();
 
+		m_stateClass[(int)eStates.THROW] = GetComponent<StateThrow>();
 		m_stateClass[(int)eStates.HIT_STUN] = GetComponent<StateHitGround>();
 		m_stateClass[(int)eStates.AIR_HIT_STUN] = GetComponent<StateHitAir>();
 		m_stateClass[(int)eStates.SPAWNING] = GetComponent<StateSpawn>();
@@ -107,6 +105,7 @@ public class State_Machine : MonoBehaviour
 
 		m_stateClass[(int)m_newState].Enter(m_currentState);
 
+		// initializes all the states and gives them a refrence to this charicters data
 		for (int z = 0; z < (int)eStates.SIZE_OF_E_STATES; z++)
 		{
 			m_stateClass[z].Initialize(m_me);
@@ -115,6 +114,7 @@ public class State_Machine : MonoBehaviour
 		m_animations = GetComponent<AnimClass>();
 		m_animations.F_initialize(m_sprite);
 
+		// creates the animations needed for the diffrent states
 		m_animations.addAnim(); // STAND
 		m_animations.addKeyFrame((int)eStates.STANDING, m_sprites[1], 0.01f);
 		m_animations.animRepeat((int)eStates.STANDING);

@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 	private float[] m_velocity = new float[2];
 
 	private float m_timer = 0.0f;
-	private bool m_active = false;
+	protected bool m_active = false;
 	private int m_hitboxID = 0;
 
 	public void Initialize()
