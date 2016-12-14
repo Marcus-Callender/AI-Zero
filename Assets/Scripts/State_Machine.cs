@@ -345,4 +345,12 @@ public class State_Machine : MonoBehaviour
 	{
 		return (m_newState == eStates.FALLING);
 	}
+
+	public bool IsFalling()
+	{
+		if ((m_newState == eStates.FALLING) && (m_me.GetYVelocity() < 0.0f))
+			return true;
+
+		return false;
+	}
 }

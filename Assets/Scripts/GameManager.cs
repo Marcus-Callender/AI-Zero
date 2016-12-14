@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
 						//	m_charicters[x].CollideAddToVelocity(temp);
 						//}
 
-						if (m_charicterStates[z].isInAir() && !m_charicterStates[x].isInAir())
+						if (m_charicterStates[z].IsFalling() && !m_charicterStates[x].IsFalling())
 						{
 							if (m_charicters[z].getX() > m_charicters[x].getX())
 							{
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
 								m_charicters[x].CollideAddToVelocity(temp);
 							}
 						}
-						else if (m_charicterStates[x].isInAir() && !m_charicterStates[z].isInAir())
+						else if (m_charicterStates[x].IsFalling() && !m_charicterStates[z].IsFalling())
 						{
 							if (m_charicters[z].getX() > m_charicters[x].getX())
 							{
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		/*for (int z = 0; z < m_zeros.Length; z++)
+		/**/for (int z = 0; z < m_zeros.Length; z++)
 		{
 			for (int x = 1; x < m_zeros.Length; x++)
 			{
@@ -297,25 +297,25 @@ public class GameManager : MonoBehaviour
 						onLeft.MovePos(-overlapDistance, 0.0f);
 						onRight.MovePos(overlapDistance, 0.0f);
 
-						////Debug.Log("Collision H Char");
-						//float maxVel = m_charicters[z].GetXVelocity();
+						//Debug.Log("Collision H Char");
+						float maxVel = m_charicters[z].GetXVelocity();
 
-						//if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
-						//	maxVel = m_charicters[x].GetXVelocity();
+						if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
+							maxVel = m_charicters[x].GetXVelocity();
 
-						//m_charicterStates[z].colideHorizontal(maxVel);
-						//m_charicterStates[x].colideHorizontal(maxVel);
+						m_charicterStates[z].colideHorizontal(maxVel);
+						m_charicterStates[x].colideHorizontal(maxVel);
 
-						//zerosColided[0] = z;
-						//zerosColided[1] = x;
+						zerosColided[0] = z;
+						zerosColided[1] = x;
 
-						////float tempVel = m_charicters[z].GetXVelocity();
-						////m_charicterStates[z].colideHorizontal(m_charicters[x].GetXVelocity());
-						////m_charicterStates[x].colideHorizontal(tempVel);
+						//float tempVel = m_charicters[z].GetXVelocity();
+						//m_charicterStates[z].colideHorizontal(m_charicters[x].GetXVelocity());
+						//m_charicterStates[x].colideHorizontal(tempVel);
 					}
 				}
 			}
-		}*/
+		}
 	}
 
 	void HitCheck(float deltaTime)

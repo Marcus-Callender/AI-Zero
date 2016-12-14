@@ -107,15 +107,29 @@ public class HitBoxManager : MonoBehaviour
 	
 	public int IsRectInside(float left, float right, float top, float bottom)
 	{
+		int toReturn = -1;
+
 		for (int z = 0; z < 5; z++)
 		{
 			// checks if any of the coordanites are contained within any of the hitboxes. if so returns the first matching hitbox
-			if (m_hitboxes[z] != null)
+			/*if (m_hitboxes[z] != null)
 				if (m_hitboxes[z].IsRectInside(left, right, top, bottom))
-					return z;
+					return z;*/
+
+			if (m_hitboxes[z] != null)
+			{
+				if (m_hitboxes[z].IsRectInside(left, right, top, bottom))
+				{
+					if (toReturn == -1)
+						toReturn = z;
+					else
+						Debug.Log("Hitboxes: " + z + " & " + toReturn + " hit.");
+				}
+			}
 		}
 
-		return -1;
+		//return -1;
+		return toReturn;
 	}
 
 	public int GetDamage(int id)
@@ -243,26 +257,9 @@ public class Hitbox
 
 		return false;
 	}
-
-	//public bool IsRectInside(float x, float y, float width, float height)
+	
 	public bool IsRectInside(float left, float right, float top, float bottom)
 	{
-		/*if (left > (m_xPos - (m_width * 0.5f)) && left < (m_xPos + (m_width * 0.5f)))
-			if (top > (m_yPos) && top < (m_yPos + (m_height * 0.5f)))
-				return true;
-
-		if (left > (m_xPos - (m_width * 0.5f)) && left < (m_xPos + (m_width * 0.5f)))
-			if (bottom > (m_yPos) && bottom < (m_yPos + (m_height * 0.5f)))
-				return true;
-
-		if (right > (m_xPos - (m_width * 0.5f)) && right < (m_xPos + (m_width * 0.5f)))
-			if (top > (m_yPos) && top < (m_yPos + (m_height * 0.5f)))
-				return true;
-
-		if (right > (m_xPos - (m_width * 0.5f)) && right < (m_xPos + (m_width * 0.5f)))
-			if (bottom > (m_yPos) && bottom < (m_yPos + (m_height * 0.5f)))
-				return true;*/
-
 		if (!m_enabled)
 			return false;
 

@@ -283,6 +283,8 @@ public class AI_Input : BaseInputHandler
 		// assignes the inputs to the input array sent back to the state machine
 		for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
 			inputs[z] = m_input[z];
+
+		//inputs[(int)eInputs.RIGHT] = true;
 	}
 
 	public override void GiveWeapons(eWeaponType weapon1, eWeaponType weapon2)
@@ -498,22 +500,22 @@ public class AI_Input : BaseInputHandler
 		//return (eAI_Actions)DEBUG_STATE;
 
 		//return eAI_Actions.PRESSURE;
-		return (eAI_Actions)Random.Range(0, 6);
+		//return (eAI_Actions)Random.Range(0, 6);
 
-		/*int roll = Random.Range(0, m_actionProbabilitiesTotal);
+		int roll = Random.Range(0, m_actionProbabilitiesTotal);
 		int total = 0;
 
 		for (int z = 0; z < (int)eAI_Actions.FREE; z++)
 		{
-			total += m_actionProbabilaties[z];
-
-			if (roll > total)
+			if (roll < total)
 			{
 				return (eAI_Actions)z;
 			}
+
+			total += m_actionProbabilaties[z];
 		}
 
-		return eAI_Actions.DEFFEND;*/
+		return (eAI_Actions)0;
 	}
 
 	public eAI_Actions Wait(float deltaTime, eStates myState, bool stateChanged)

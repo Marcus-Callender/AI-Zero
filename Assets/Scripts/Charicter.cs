@@ -306,6 +306,10 @@ public class Charicter : MonoBehaviour
 				m_effect.Actiate(eAnimDisplay.BLOCK_SPARK);
 			}
 		}
+		else
+		{
+			Debug.Log("Invincable");
+		}
 	}
 
 	bool CheckBlockSide(float xPos)
@@ -341,6 +345,11 @@ public class Charicter : MonoBehaviour
 	public float GetXVelocity()
 	{
 		return m_velocity[0];
+	}
+
+	public float GetYVelocity()
+	{
+		return m_velocity[1];
 	}
 
 	public bool isCollidedHorizontal(float x)
