@@ -133,7 +133,14 @@ public class GameManager : MonoBehaviour
 					m_timer = m_KO_Time * 0.5f;
 				}
 				else
+				{
 					SceneManager.LoadScene("MainMenu02", LoadSceneMode.Single);
+
+					for (int z = 0; z < m_charicters.Length; z++)
+					{
+						m_charicters[z].DeInitialize();
+					}
+				}
 			}
 		}
 	}
@@ -151,30 +158,10 @@ public class GameManager : MonoBehaviour
 
 		for (int z = 0; z < m_zeros.Length; z++)
 		{
-			for (int x = 1; x < m_zeros.Length; x++)
+			for (int x = z + 1; x < m_zeros.Length; x++)
 			{
 				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime))
 				{
-					//Debug.Log("Collision H Char");
-					/*float maxVel = m_charicters[z].GetXVelocity();
-
-					if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
-						maxVel = m_charicters[x].GetXVelocity();
-
-					m_charicterStates[z].colideHorizontal(maxVel);
-					m_charicterStates[x].colideHorizontal(maxVel);
-
-					zerosColided[0] = z;
-					zerosColided[1] = x;*/
-
-					//if (m_charicterStates[z].isInAir() || m_charicterStates[x].isInAir())
-					//{
-					//	float temp = m_charicters[z].GetXVelocity() * 2.0f;
-
-					//	m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity() * 2.0f);
-					//	m_charicters[x].CollideAddToVelocity(temp);
-					//}
-
 					if (m_charicterStates[z].IsFalling() && !m_charicterStates[x].IsFalling())
 					{
 						if (m_charicters[z].getX() > m_charicters[x].getX())
@@ -216,19 +203,14 @@ public class GameManager : MonoBehaviour
 						m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity());
 						m_charicters[x].CollideAddToVelocity(temp);
 					}
-
-					//float tempVel = m_charicters[z].GetXVelocity();
-					//m_charicterStates[z].colideHorizontal(m_charicters[x].GetXVelocity());
-					//m_charicterStates[x].colideHorizontal(tempVel);
 				}
 			}
 		}
 
 		for (int z = 0; z < m_zeros.Length; z++)
 		{
-			for (int x = 1; x < m_zeros.Length; x++)
+			for (int x = z + 1; x < m_zeros.Length; x++)
 			{
-				//if (AreColiding(m_charicters[x], m_charicters[z]))
 				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime))
 				{
 					Charicter onLeft = m_charicters[z];
@@ -241,14 +223,10 @@ public class GameManager : MonoBehaviour
 					}
 
 					float overlapDistance = (onLeft.getRight() - onRight.getLeft()) * 0.5f;
-
-					//onLeft.MovePos(-overlapDistance, 0.0f);
-					//onRight.MovePos(overlapDistance, 0.0f);
 					
 					onLeft.addToVelocity(-overlapDistance, 0.0f);
 					onRight.addToVelocity(overlapDistance, 0.0f);
-
-					//Debug.Log("Collision H Char");
+					
 					float maxVel = m_charicters[z].GetXVelocity();
 
 					if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
@@ -259,10 +237,6 @@ public class GameManager : MonoBehaviour
 
 					zerosColided[0] = z;
 					zerosColided[1] = x;
-
-					//float tempVel = m_charicters[z].GetXVelocity();
-					//m_charicterStates[z].colideHorizontal(m_charicters[x].GetXVelocity());
-					//m_charicterStates[x].colideHorizontal(tempVel);
 				}
 			}
 		}
@@ -280,7 +254,6 @@ public class GameManager : MonoBehaviour
 				{
 					if (m_colliders[x].CollideVertical(m_charicters[z].getTop()) || m_colliders[x].CollideVertical(m_charicters[z].getBottom()))
 					{
-						//Debug.Log("Collision H");
 						colided = true;
 						colidedHorisontal = true;
 						m_charicterStates[z].colideHorizontal();
@@ -297,7 +270,6 @@ public class GameManager : MonoBehaviour
 				{
 					if (m_colliders[x].CollideHorizontal(m_charicters[z].getLeft()) || m_colliders[x].CollideHorizontal(m_charicters[z].getRight()))
 					{
-						//Debug.Log("Collision V");
 						colidedVertical = true;
 						m_charicterStates[z].collideVertical(m_colliders[x].GetTop());
 					}

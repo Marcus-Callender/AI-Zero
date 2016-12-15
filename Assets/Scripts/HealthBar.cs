@@ -19,8 +19,7 @@ public class HealthBar : MonoBehaviour
 	private float m_height = 768;
 
 	private static GUIStyle m_style = null;
-
-	//void Start()
+	
 	public void Initialize()
 	{
 		m_myIndex = m_index;
@@ -28,6 +27,12 @@ public class HealthBar : MonoBehaviour
 		m_index++;
 
 		InitializeStyle();
+	}
+
+	public void DeInitialize()
+	{
+		// resets the index count for the next game
+		m_index--;
 	}
 
 	public void Cycle(int hp)

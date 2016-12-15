@@ -49,7 +49,12 @@ public class Charicter : MonoBehaviour
 		m_effect = GetComponentInChildren<EffectImage>();
 		m_effect.Initialize();
 	}
-	
+
+	public void DeInitialize()
+	{
+		m_healthBar.DeInitialize();
+	}
+
 	public void F_Update(float deltaTime)
 	{
 		// allignes the charicter to match there orientation
