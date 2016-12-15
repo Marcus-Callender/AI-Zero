@@ -281,8 +281,8 @@ public class AI_Input : BaseInputHandler
 	public override void Inputs(ref bool[] inputs)
 	{
 		// assignes the inputs to the input array sent back to the state machine
-		for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
-			inputs[z] = m_input[z];
+		//for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
+			//inputs[z] = m_input[z];
 
 		//inputs[(int)eInputs.RIGHT] = true;
 	}
