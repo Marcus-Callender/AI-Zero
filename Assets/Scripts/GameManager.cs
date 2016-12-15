@@ -227,51 +227,6 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		/**/for (int z = 0; z < m_zeros.Length; z++)
-		{
-			for (int x = 1; x < m_zeros.Length; x++)
-			{
-				if (m_charicters[x].isCollidedHorizontal(m_charicters[z].getLeft()) || m_charicters[x].isCollidedHorizontal(m_charicters[z].getRight()))
-				{
-					if (m_charicters[x].isCollidedVertical(m_charicters[z].getTop()) || m_charicters[x].isCollidedVertical(m_charicters[z].getBottom()))
-					{
-						Charicter onLeft = m_charicters[z];
-						Charicter onRight = m_charicters[x];
-
-						if (m_charicters[z].getX() > m_charicters[x].getX())
-						{
-							onLeft = m_charicters[x];
-							onRight = m_charicters[z];
-						}
-
-						float overlapDistance = (onLeft.getRight() - onRight.getLeft()) * 0.5f;
-
-						//onLeft.MovePos(-overlapDistance, 0.0f);
-						//onRight.MovePos(overlapDistance, 0.0f);
-
-						onLeft.addToVelocity(-overlapDistance * 0.2f, 0.0f);
-						onRight.addToVelocity(overlapDistance * 0.2f, 0.0f);
-
-						//Debug.Log("Collision H Char");
-						float maxVel = m_charicters[z].GetXVelocity();
-
-						if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
-							maxVel = m_charicters[x].GetXVelocity();
-
-						m_charicterStates[z].colideHorizontal(maxVel);
-						m_charicterStates[x].colideHorizontal(maxVel);
-
-						zerosColided[0] = z;
-						zerosColided[1] = x;
-
-						float tempVel = m_charicters[z].GetXVelocity();
-						m_charicterStates[z].colideHorizontal(m_charicters[x].GetXVelocity());
-						m_charicterStates[x].colideHorizontal(tempVel);
-					}
-				}
-			}
-		}
-
 		for (int z = 0; z < m_zeros.Length; z++)
 		{
 			bool colidedHorisontal = false;
@@ -317,6 +272,48 @@ public class GameManager : MonoBehaviour
 			if (!colidedVertical)
 			{
 				m_charicterStates[z].notCollideVertical();
+			}
+		}
+
+		/**/for (int z = 0; z < m_zeros.Length; z++)
+		{
+			for (int x = 1; x < m_zeros.Length; x++)
+			{
+				if (m_charicters[x].isCollidedHorizontal(m_charicters[z].getLeft()) || m_charicters[x].isCollidedHorizontal(m_charicters[z].getRight()))
+				{
+					if (m_charicters[x].isCollidedVertical(m_charicters[z].getTop()) || m_charicters[x].isCollidedVertical(m_charicters[z].getBottom()))
+					{
+						Charicter onLeft = m_charicters[z];
+						Charicter onRight = m_charicters[x];
+
+						if (m_charicters[z].getX() > m_charicters[x].getX())
+						{
+							onLeft = m_charicters[x];
+							onRight = m_charicters[z];
+						}
+
+						float overlapDistance = (onLeft.getRight() - onRight.getLeft()) * 0.5f;
+
+						onLeft.MovePos(-overlapDistance, 0.0f);
+						onRight.MovePos(overlapDistance, 0.0f);
+
+						//Debug.Log("Collision H Char");
+						float maxVel = m_charicters[z].GetXVelocity();
+
+						if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
+							maxVel = m_charicters[x].GetXVelocity();
+
+						m_charicterStates[z].colideHorizontal(maxVel);
+						m_charicterStates[x].colideHorizontal(maxVel);
+
+						zerosColided[0] = z;
+						zerosColided[1] = x;
+
+						//float tempVel = m_charicters[z].GetXVelocity();
+						//m_charicterStates[z].colideHorizontal(m_charicters[x].GetXVelocity());
+						//m_charicterStates[x].colideHorizontal(tempVel);
+					}
+				}
 			}
 		}
 	}
