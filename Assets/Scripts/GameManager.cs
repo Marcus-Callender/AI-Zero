@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
 		{
 			for (int x = z + 1; x < m_zeros.Length; x++)
 			{
-				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime))
+				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime) && !AreColiding(m_charicters[x], m_charicters[z]))
 				{
 					if (m_charicterStates[z].IsFalling() && !m_charicterStates[x].IsFalling())
 					{
@@ -204,6 +204,10 @@ public class GameManager : MonoBehaviour
 						m_charicters[x].CollideAddToVelocity(temp);
 					}
 				}
+				else if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime) && AreColiding(m_charicters[x], m_charicters[z]))
+				{
+					Debug.Log("Chaicters stuck");
+				}
 			}
 		}
 
@@ -222,18 +226,24 @@ public class GameManager : MonoBehaviour
 						onRight = m_charicters[z];
 					}
 
-					float overlapDistance = (onLeft.getRight() - onRight.getLeft()) * 0.5f;
-					
-					onLeft.addToVelocity(-overlapDistance, 0.0f);
-					onRight.addToVelocity(overlapDistance, 0.0f);
-					
-					float maxVel = m_charicters[z].GetXVelocity();
+					float overlapDistance = (onLeft.getRight() - onRight.getLeft()) /** 0.5f*/;
+
+					//onLeft.addToVelocity(-1.2f, 0.0f);
+					//onRight.addToVelocity(1.2f, 0.0f);
+
+					onLeft.addToVelocity(-12.0f, 0.0f);
+					onRight.addToVelocity(12.0f, 0.0f);
+
+					//onLeft.setVelocity(-overlapDistance * 5.0f, 0.0f);
+					//onRight.setVelocity(overlapDistance * 5.0f, 0.0f);
+
+					/*float maxVel = m_charicters[z].GetXVelocity();
 
 					if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
 						maxVel = m_charicters[x].GetXVelocity();
 
 					m_charicterStates[z].colideHorizontal(maxVel);
-					m_charicterStates[x].colideHorizontal(maxVel);
+					m_charicterStates[x].colideHorizontal(maxVel);*/
 
 					zerosColided[0] = z;
 					zerosColided[1] = x;

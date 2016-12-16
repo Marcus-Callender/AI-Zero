@@ -71,23 +71,6 @@ public class EffectImage : MonoBehaviour
 	public void Cycle(float deltaTime)
 	{
 		m_anims.F_update(deltaTime);
-
-		if (m_active)
-		{
-			//m_animTimer += deltaTime;
-
-			int frames = m_sprites.GetLength((int)m_currentAnim);
-
-			//if (m_animTimer > (frames * m_frameDisplayTime))
-			//{
-			//	m_active = false;
-			//	m_sprite.gameObject.SetActive(false);
-			//}
-			//else
-			//{
-			//	m_sprite.sprite = m_sprites[(int)m_currentAnim, (int) Mathf.Floor(frames / (m_frameDisplayTime * frames))];
-			//}
-		}
 	}
 
 	public void Actiate(eAnimDisplay anim)
