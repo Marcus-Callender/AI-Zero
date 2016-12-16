@@ -156,146 +156,11 @@ public class GameManager : MonoBehaviour
 			zerosColided[z] = -1;
 		}
 
-		for (int z = 0; z < m_zeros.Length; z++)
-		{
-			for (int x = z + 1; x < m_zeros.Length; x++)
-			{
-				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime) && !AreColiding(m_charicters[x], m_charicters[z]))
-				{
-					if (m_charicterStates[z].IsFalling() && !m_charicterStates[x].IsFalling())
-					{
-						if (m_charicters[z].getX() > m_charicters[x].getX())
-						{
-							float temp = m_charicters[z].GetXVelocity();
+		CharictersCollide(deltaTime);
 
-							m_charicters[z].CollideAddToVelocity(-m_charicters[x].GetXVelocity() * 2.0f);
-							m_charicters[x].CollideAddToVelocity(temp);
-						}
-						else
-						{
-							float temp = -m_charicters[z].GetXVelocity();
+		CheckOverlap(deltaTime, ref zerosColided);
 
-							m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity() * 2.0f);
-							m_charicters[x].CollideAddToVelocity(temp);
-						}
-					}
-					else if (m_charicterStates[x].IsFalling() && !m_charicterStates[z].IsFalling())
-					{
-						if (m_charicters[z].getX() > m_charicters[x].getX())
-						{
-							float temp = -m_charicters[z].GetXVelocity();
-
-							m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity() * 2.0f);
-							m_charicters[x].CollideAddToVelocity(temp);
-						}
-						else
-						{
-							float temp = m_charicters[z].GetXVelocity();
-
-							m_charicters[z].CollideAddToVelocity(-m_charicters[x].GetXVelocity() * 2.0f);
-							m_charicters[x].CollideAddToVelocity(temp);
-						}
-					}
-					else
-					{
-						float temp = m_charicters[z].GetXVelocity();
-
-						m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity());
-						m_charicters[x].CollideAddToVelocity(temp);
-					}
-				}
-				else if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime) && AreColiding(m_charicters[x], m_charicters[z]))
-				{
-					Debug.Log("Chaicters stuck");
-				}
-			}
-		}
-
-		for (int z = 0; z < m_zeros.Length; z++)
-		{
-			for (int x = z + 1; x < m_zeros.Length; x++)
-			{
-				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime))
-				{
-					Charicter onLeft = m_charicters[z];
-					Charicter onRight = m_charicters[x];
-
-					if (m_charicters[z].getX() > m_charicters[x].getX())
-					{
-						onLeft = m_charicters[x];
-						onRight = m_charicters[z];
-					}
-
-					float overlapDistance = (onLeft.getRight() - onRight.getLeft()) /** 0.5f*/;
-
-					//onLeft.addToVelocity(-1.2f, 0.0f);
-					//onRight.addToVelocity(1.2f, 0.0f);
-
-					onLeft.addToVelocity(-12.0f, 0.0f);
-					onRight.addToVelocity(12.0f, 0.0f);
-
-					//onLeft.setVelocity(-overlapDistance * 5.0f, 0.0f);
-					//onRight.setVelocity(overlapDistance * 5.0f, 0.0f);
-
-					/*float maxVel = m_charicters[z].GetXVelocity();
-
-					if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
-						maxVel = m_charicters[x].GetXVelocity();
-
-					m_charicterStates[z].colideHorizontal(maxVel);
-					m_charicterStates[x].colideHorizontal(maxVel);*/
-
-					zerosColided[0] = z;
-					zerosColided[1] = x;
-				}
-			}
-		}
-
-		for (int z = 0; z < m_zeros.Length; z++)
-		{
-			bool colidedHorisontal = false;
-			bool colidedVertical = false;
-
-			for (int x = 0; x < m_walls.Length; x++)
-			{
-				bool colided = false;
-
-				if (m_colliders[x].CollideHorizontal(m_charicters[z].predictLeft(deltaTime)) || m_colliders[x].CollideHorizontal(m_charicters[z].predictRight(deltaTime)))
-				{
-					if (m_colliders[x].CollideVertical(m_charicters[z].getTop()) || m_colliders[x].CollideVertical(m_charicters[z].getBottom()))
-					{
-						colided = true;
-						colidedHorisontal = true;
-						m_charicterStates[z].colideHorizontal();
-
-						if (zerosColided[0] == z || zerosColided[1] == z)
-						{
-							m_charicters[zerosColided[0]].setXVelocity(0.0f);
-							m_charicters[zerosColided[1]].setXVelocity(0.0f);
-						}
-					}
-				}
-
-				if (m_colliders[x].CollideVertical(m_charicters[z].predictTop(deltaTime)) || m_colliders[x].CollideVertical(m_charicters[z].predictBottom(deltaTime)) && !colided)
-				{
-					if (m_colliders[x].CollideHorizontal(m_charicters[z].getLeft()) || m_colliders[x].CollideHorizontal(m_charicters[z].getRight()))
-					{
-						colidedVertical = true;
-						m_charicterStates[z].collideVertical(m_colliders[x].GetTop());
-					}
-				}
-			}
-
-			if (!colidedHorisontal)
-			{
-				m_charicterStates[z].notColideHorizontal();
-			}
-
-			if (!colidedVertical)
-			{
-				m_charicterStates[z].notCollideVertical();
-			}
-		}
+		EnviromentCollision(deltaTime, ref zerosColided);
 	}
 
 	void HitCheck(float deltaTime)
@@ -357,5 +222,161 @@ public class GameManager : MonoBehaviour
 		}
 
 		return false;
+	}
+
+	void CharictersCollide(float deltaTime)
+	{
+		for (int z = 0; z < m_zeros.Length; z++)
+		{
+			for (int x = z + 1; x < m_zeros.Length; x++)
+			{
+				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime) && !AreColiding(m_charicters[x], m_charicters[z]))
+				{
+					if (m_charicterStates[z].IsFalling() && !m_charicterStates[x].IsFalling())
+					{
+						if (m_charicters[z].getX() > m_charicters[x].getX())
+						{
+							float temp = m_charicters[z].GetXVelocity();
+
+							m_charicters[z].CollideAddToVelocity(-m_charicters[x].GetXVelocity() * 2.0f);
+							m_charicters[x].CollideAddToVelocity(temp);
+						}
+						else
+						{
+							float temp = -m_charicters[z].GetXVelocity();
+
+							m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity() * 2.0f);
+							m_charicters[x].CollideAddToVelocity(temp);
+						}
+					}
+					else if (m_charicterStates[x].IsFalling() && !m_charicterStates[z].IsFalling())
+					{
+						if (m_charicters[z].getX() > m_charicters[x].getX())
+						{
+							float temp = -m_charicters[z].GetXVelocity();
+
+							m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity() * 2.0f);
+							m_charicters[x].CollideAddToVelocity(temp);
+						}
+						else
+						{
+							float temp = m_charicters[z].GetXVelocity();
+
+							m_charicters[z].CollideAddToVelocity(-m_charicters[x].GetXVelocity() * 2.0f);
+							m_charicters[x].CollideAddToVelocity(temp);
+						}
+					}
+					else
+					{
+						float temp = m_charicters[z].GetXVelocity();
+
+						m_charicters[z].CollideAddToVelocity(m_charicters[x].GetXVelocity());
+						m_charicters[x].CollideAddToVelocity(temp);
+					}
+				}
+				else if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime) && AreColiding(m_charicters[x], m_charicters[z]))
+				{
+					Debug.Log("Chaicters stuck");
+				}
+			}
+		}
+	}
+
+	void CheckOverlap(float deltaTime, ref int[] zerosColided)
+	{
+		for (int z = 0; z < m_zeros.Length; z++)
+		{
+			for (int x = z + 1; x < m_zeros.Length; x++)
+			{
+				if (PredictColiding(m_charicters[x], m_charicters[z], deltaTime))
+				{
+					Charicter onLeft = m_charicters[z];
+					Charicter onRight = m_charicters[x];
+
+					if (m_charicters[z].getX() > m_charicters[x].getX())
+					{
+						onLeft = m_charicters[x];
+						onRight = m_charicters[z];
+					}
+
+					float overlapDistance = (onLeft.getRight() - onRight.getLeft());
+
+					//onLeft.addToVelocity(-6.2f, 0.0f);
+					//onRight.addToVelocity(6.2f, 0.0f);
+
+					//onLeft.addToVelocity(-1.2f, 0.0f);
+					//onRight.addToVelocity(1.2f, 0.0f);
+
+					//onLeft.addToVelocity(-12.0f, 0.0f);
+					//onRight.addToVelocity(12.0f, 0.0f);
+
+					//onLeft.setVelocity(-12.0f, 0.0f);
+					//onRight.setVelocity(12.0f, 0.0f);
+
+					onLeft.addToVelocity(-overlapDistance * 6.0f, 0.0f);
+					onRight.addToVelocity(overlapDistance * 6.0f, 0.0f);
+
+					/*float maxVel = m_charicters[z].GetXVelocity();
+
+					if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
+						maxVel = m_charicters[x].GetXVelocity();
+
+					m_charicterStates[z].colideHorizontal(maxVel);
+					m_charicterStates[x].colideHorizontal(maxVel);*/
+
+					zerosColided[0] = z;
+					zerosColided[1] = x;
+				}
+			}
+		}
+	}
+
+	void EnviromentCollision(float deltaTime, ref int[] zerosColided)
+	{
+		for (int z = 0; z < m_zeros.Length; z++)
+		{
+			bool colidedHorisontal = false;
+			bool colidedVertical = false;
+
+			for (int x = 0; x < m_walls.Length; x++)
+			{
+				bool colided = false;
+
+				if (m_colliders[x].CollideHorizontal(m_charicters[z].predictLeft(deltaTime)) || m_colliders[x].CollideHorizontal(m_charicters[z].predictRight(deltaTime)))
+				{
+					if (m_colliders[x].CollideVertical(m_charicters[z].getTop()) || m_colliders[x].CollideVertical(m_charicters[z].getBottom()))
+					{
+						colided = true;
+						colidedHorisontal = true;
+						m_charicterStates[z].colideHorizontal();
+
+						if (zerosColided[0] == z || zerosColided[1] == z)
+						{
+							m_charicters[zerosColided[0]].setXVelocity(0.0f);
+							m_charicters[zerosColided[1]].setXVelocity(0.0f);
+						}
+					}
+				}
+
+				if (m_colliders[x].CollideVertical(m_charicters[z].predictTop(deltaTime)) || m_colliders[x].CollideVertical(m_charicters[z].predictBottom(deltaTime)) && !colided)
+				{
+					if (m_colliders[x].CollideHorizontal(m_charicters[z].getLeft()) || m_colliders[x].CollideHorizontal(m_charicters[z].getRight()))
+					{
+						colidedVertical = true;
+						m_charicterStates[z].collideVertical(m_colliders[x].GetTop());
+					}
+				}
+			}
+
+			if (!colidedHorisontal)
+			{
+				m_charicterStates[z].notColideHorizontal();
+			}
+
+			if (!colidedVertical)
+			{
+				m_charicterStates[z].notCollideVertical();
+			}
+		}
 	}
 }
