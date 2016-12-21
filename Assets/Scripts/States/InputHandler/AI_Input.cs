@@ -51,14 +51,8 @@ public class AI_Input : BaseInputHandler
 	private eAI_Actions m_currentAction;
 	private eAI_Actions m_previousAction;
 	private bool[] m_input = new bool[(int)eInputs.SIZE_OF_E_INPUTS];
-	//private int m_StatusInputs = 0;
 	private int m_statePosition = 0;
 	private int m_subStatePosition = 0;
-
-	//private float m_baseInputTime = 0.25f;
-
-	//private float[] m_InputTimings = new float[(int)eAI_InputArray.TOTAL_INPUTS];
-	//private bool[] m_InputResults = new bool[(int)eAI_InputArray.TOTAL_INPUTS];
 
 	private float m_maxTimeInState = 3.0f;
 	private eAI_SubAction m_subAction = eAI_SubAction.NONE;
@@ -283,8 +277,6 @@ public class AI_Input : BaseInputHandler
 		// assignes the inputs to the input array sent back to the state machine
 		for (int z = 0; z < (int)eInputs.SIZE_OF_E_INPUTS; z++)
 			inputs[z] = m_input[z];
-
-		//inputs[(int)eInputs.RIGHT] = true;
 	}
 
 	public override void GiveWeapons(eWeaponType weapon1, eWeaponType weapon2)
@@ -444,8 +436,9 @@ public class AI_Input : BaseInputHandler
 		}
 		else
 		{
+			// makes the AI jumpin tretening if they use someting afterwards
 			if (myState == eStates.STANDING)
-				return eAI_Actions.WAIT;
+				return eAI_Actions.FREE;
 		}
 
 		return eAI_Actions.JUMP_IN;
@@ -453,7 +446,26 @@ public class AI_Input : BaseInputHandler
 
 	public eAI_Actions AntiAir(float deltaTime, eStates myState, bool stateChanged)
 	{
-		if (stateChanged)
+		if (m_statePosition == 0)
+		{
+			// wait until the enemy is close enough to hit
+			if ((m_statusResult & IntToFlag((int)eAI_InputArray.ENEMY_FAR)) != IntToFlag((int)eAI_InputArray.ENEMY_FAR))
+				m_statePosition++;
+		}
+		else if (m_statePosition == 1)
+		{
+			UseAntiAirAttack();
+			m_statePosition++;
+		}
+		else if (m_statePosition == 2)
+		{
+			if (myState == eStates.STANDING)
+				return eAI_Actions.WAIT;
+		}
+
+		return eAI_Actions.ANTI_AIR;
+
+		/*if (stateChanged)
 		{
 			m_input[(int)eInputs.JUMP] = true;
 		}
@@ -462,7 +474,7 @@ public class AI_Input : BaseInputHandler
 			return eAI_Actions.WAIT;
 		}
 
-		return eAI_Actions.ANTI_AIR;
+		return eAI_Actions.ANTI_AIR;*/
 	}
 
 	public eAI_Actions Defend(float deltaTime, eStates myState, bool stateChanged)
@@ -481,16 +493,27 @@ public class AI_Input : BaseInputHandler
 
 	public eAI_Actions FreeAction(float deltaTime, eStates myState, bool stateChanged)
 	{
-		/*if ((m_StatusInputs & IntToFlag((int)eAI_InputArray.ENEMY_FAR)) != IntToFlag((int)eAI_InputArray.ENEMY_FAR))
+		if ((m_statusResult & IntToFlag((int)eAI_InputArray.ENEMY_JUMPING)) == IntToFlag((int)eAI_InputArray.ENEMY_JUMPING))
+			return eAI_Actions.ANTI_AIR;
+
+		if ((m_statusResult & IntToFlag((int)eAI_InputArray.ENEMY_FAR)) == IntToFlag((int)eAI_InputArray.ENEMY_FAR))
 			return eAI_Actions.ZONE;
 
-		if ((m_StatusInputs & IntToFlag((int)eAI_InputArray.ENEMY_MID)) != IntToFlag((int)eAI_InputArray.ENEMY_MID))
-			return eAI_Actions.POKE;
+		if ((m_statusResult & IntToFlag((int)eAI_InputArray.ENEMY_MID)) == IntToFlag((int)eAI_InputArray.ENEMY_MID))
+		{
+			if (Random.Range(0, 2) == 0)
+				return eAI_Actions.POKE;
+			else
+				return eAI_Actions.JUMP_IN;
+		}
 
-		if ((m_StatusInputs & IntToFlag((int)eAI_InputArray.ENEMY_CLOSE)) != IntToFlag((int)eAI_InputArray.ENEMY_CLOSE))
-			return eAI_Actions.PRESSURE;*/
-
-		//return (eAI_Actions)Random.Range(0, 3);
+		if ((m_statusResult & IntToFlag((int)eAI_InputArray.ENEMY_CLOSE)) == IntToFlag((int)eAI_InputArray.ENEMY_CLOSE))
+		{
+			if (Random.Range(0, 2) == 0)
+				return eAI_Actions.PRESSURE;
+			else
+				return eAI_Actions.DEFFEND;
+		}
 
 		//DEBUG_STATE++;
 
@@ -499,8 +522,7 @@ public class AI_Input : BaseInputHandler
 
 		//return (eAI_Actions)DEBUG_STATE;
 
-		//return eAI_Actions.PRESSURE;
-		//return (eAI_Actions)Random.Range(0, 6);
+		//return eAI_Actions.ANTI_AIR;
 
 		int roll = Random.Range(0, m_actionProbabilitiesTotal);
 		int total = 0;
@@ -644,6 +666,8 @@ public class AI_Input : BaseInputHandler
 
 	int IntToFlag(int z)
 	{
+		// this should be done through maths but I wasn't able to get it to work.
+
 		if (z == 0)
 			return 0;
 
