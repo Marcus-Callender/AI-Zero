@@ -95,12 +95,6 @@ public class AI_Input : BaseInputHandler
 		{
 			Debug.Log("Going to state: " + m_currentAction);
 
-			/*for (int z = 0; z < (int)eAI_InputArray.TOTAL_INPUTS; z++)
-			{
-				m_InputTimings[z] = m_baseInputTime;
-				m_InputResults[z] = false;
-			}*/
-
 			m_stateTime = 0.0f;
 			m_previousAction = m_currentAction;
 			m_statePosition = 0;

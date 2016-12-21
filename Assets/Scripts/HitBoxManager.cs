@@ -122,13 +122,13 @@ public class HitBoxManager : MonoBehaviour
 				{
 					if (toReturn == -1)
 						toReturn = z;
+					// if multiple hiyboxes hit a charicter, debug logs the hitboxes
 					else
 						Debug.Log("Hitboxes: " + z + " & " + toReturn + " hit.");
 				}
 			}
 		}
-
-		//return -1;
+		
 		return toReturn;
 	}
 

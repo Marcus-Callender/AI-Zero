@@ -25,6 +25,12 @@ public class Projectile : MonoBehaviour
 
 	public void Fire(Charicter me, float xVel, float yVel, HitBoxManager hitBoxManager, float activeTime)
 	{
+		// makes the hitbox disaper if the projectile is used again after it is stil active
+		if (m_active)
+		{
+			hitBoxManager.removeHitbox(m_hitboxID);
+		}
+
 		m_position[0] = me.getX();
 		m_position[1] = me.getY() + 1.5f;
 
@@ -34,6 +40,8 @@ public class Projectile : MonoBehaviour
 		m_active = true;
 		m_timer = activeTime;
 		m_sprite.enabled = true;
+
+		//hitBoxManager.removeHitbox(m_hitboxID);
 
 		// cretaes a new hitbox for the projectile
 		m_hitboxID = hitBoxManager.addHitbox(m_position[0], m_position[1] - 1.0f, 2.0f, 4.0f, 3, -4.0f, 8.0f, 0.75f, 0.2f, eAttackType.PROJECTILE);
@@ -58,6 +66,7 @@ public class Projectile : MonoBehaviour
 			{
 				// if the buletts timer has ran out the bulett deactivates
 				hitBoxManager.removeHitbox(m_hitboxID);
+				m_hitboxID = -1;
 				m_sprite.enabled = false;
 				m_active = false;
 			}
