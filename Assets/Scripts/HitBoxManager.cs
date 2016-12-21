@@ -271,9 +271,9 @@ public class Hitbox
 		else if ((right > m_xPos - (m_width * 0.5f)) && (right < m_xPos + (m_width * 0.5f)))
 			colHori = true;
 
-		if ((top > m_xPos) && (top < m_yPos + (m_height * 0.5f)))
+		if ((top > m_yPos) && (top < m_yPos + (m_height * 0.5f)))
 			colVert = true;
-		else if ((bottom > m_xPos) && (bottom < m_yPos + (m_height * 0.5f)))
+		else if ((bottom > m_yPos) && (bottom < m_yPos + (m_height * 0.5f)))
 			colVert = true;
 
 		if (colHori && colVert)
