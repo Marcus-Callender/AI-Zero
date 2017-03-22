@@ -339,6 +339,7 @@ public class Charicter : MonoBehaviour
 
 	public bool IsLaunched()
 	{
+		// returns true if the charicter has an upward velocity
 		if (m_velocity[1] > 0.0f)
 		{
 			return true;

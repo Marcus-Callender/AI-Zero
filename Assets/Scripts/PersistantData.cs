@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// this is used to carry the weapon data between the weapon selection screen and the main game
 public class PersistantData : MonoBehaviour
 {
 	public PersistantData m_instance = null;
@@ -8,16 +9,18 @@ public class PersistantData : MonoBehaviour
 	//private int m_numPlayers = 0;
 	private eWeaponType[,] m_SelectedWeapons = new eWeaponType[2, 2];
 	
-	// Use this for initialization
 	void Start()
 	{
+		// makes it so there can only be one instance of persistant data running at a time
 		if (m_instance == null)
 			m_instance = this;
 		else
 			Destroy(this);
 
+		// ensures this object will not be deleted by unity when changing scenes or reloading the current scene
 		DontDestroyOnLoad(this);
 
+		// sets all the selected weapons to none
 		for (int z = 0; z < 2; z++)
 		{
 			for (int x = 0; x < 2; x++)

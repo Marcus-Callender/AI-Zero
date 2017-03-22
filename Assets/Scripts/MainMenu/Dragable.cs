@@ -12,6 +12,7 @@ public enum eWeaponType
 	NONE
 }
 
+// this script is attached to the weapon icons that represent the equipable weapons on the menu
 public class Dragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 	private Vector3 m_positionOffset;

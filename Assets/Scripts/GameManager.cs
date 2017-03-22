@@ -59,11 +59,14 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{
-		//float deltaTime = Time.deltaTime;
-		float deltaTime = 0.0166666666666667f;
+		// ----- this is used to temporeraly set the time step to a fixed ammount to help with debuging -----
+		float deltaTime = Time.deltaTime;
+		//float deltaTime = 0.0166666666666667f;
 
 		KO_Check(ref deltaTime);
 
+		// if one or more of the charicters is currently in hitstop this reduces the hitstop time 
+		// then it nullifies all the other updates
 		for (int z = 0; z < m_charicterStates.Length; z++)
 		{
 			if (m_charicters[z].GetTimeStop())
@@ -73,6 +76,8 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// this is used to inform any AI contolers of what the other player is currently doing
+		// distance & action
 		for (int z = 0; z < m_charicterStates.Length; z++)
 		{
 			for (int x = 0; x < m_charicterStates.Length; x++)
@@ -82,6 +87,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// updates all the charicters
 		for (int z = 0; z < m_charicterStates.Length; z++)
 		{
 			m_charicterStates[z].Cycle(deltaTime);
@@ -90,7 +96,7 @@ public class GameManager : MonoBehaviour
 		Collide(deltaTime);
 
 		HitCheck(deltaTime);
-
+		
 		for (int z = 0; z < m_charicterStates.Length; z++)
 		{
 			m_charicterStates[z].Physics(deltaTime);
@@ -111,6 +117,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// this piece of code makes the game slowdown tempareraly on the final hit then loads back to the main menu
 		if (m_KOd)
 		{
 			if (!previouslyKOd)
@@ -169,8 +176,10 @@ public class GameManager : MonoBehaviour
 		{
 			for (int x = 0; x < m_zeros.Length; x++)
 			{
+				// ignores collision between a charicter and there own hitboxes so they can't hit themselves
 				if (z != x)
 				{
+					// checks the posions of the charicters so attacks will always thock the opponant toward/away 
 					if (m_charicters[z].getX() > m_charicters[x].getX())
 						m_charicters[z].AttackEnemy(m_charicters[x], 1.0f);
 					else
@@ -195,6 +204,7 @@ public class GameManager : MonoBehaviour
 		TargateX /= numZeros;
 		TargateY /= numZeros;
 
+		// makes the camera stay slightly above the middle of the zero's
 		m_cameraTransform.position = new Vector3(TargateX, TargateY + 2.0f, -10.0f);
 	}
 

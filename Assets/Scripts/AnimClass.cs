@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// This is a class that holds all of the animations and manages the current animation
 public class AnimClass : MonoBehaviour
 {
 	private SpriteRenderer m_activeSprite;
@@ -101,10 +102,8 @@ public class AnimClass : MonoBehaviour
 	}
 }
 
-
-
-
-
+// this is the class that holds a single animation.
+// this includes the frames, timeing and current state
 public class singleAnim
 {
 	private SpriteRenderer m_activeSprite;
@@ -136,41 +135,42 @@ public class singleAnim
 
 	public void F_update(float deltaTime)
 	{
-		if (!m_paused)
+		if (!m_paused && m_playing)
 		{
-			if (m_playing)
+			m_currentAnimTime += deltaTime;
+
+			// if the animation has not yet reached the last frame of the animation
+			if (m_currentKey < (m_numberKeys - 1))
 			{
-				m_currentAnimTime += deltaTime;
-
-				if (m_currentKey < (m_numberKeys - 1))
+				// checks the time on the animation and moves the animation forward to the next frame 
+				// if the time on the animation has passed the current frame time
+				if (m_currentAnimTime > getAnimationTime(m_currentKey))
 				{
-					if (m_currentAnimTime > getAnimationTime(m_currentKey))
-					{
-						m_currentKey++;
-						m_activeSprite.sprite = m_sprites[m_currentKey];
+					m_currentKey++;
+					m_activeSprite.sprite = m_sprites[m_currentKey];
 
-						if (m_sprites[m_currentKey] == null)
-						{
-							m_activeSprite.enabled = false;
-						}
-						else
-						{
-							m_activeSprite.enabled = true;
-						}
+					if (m_sprites[m_currentKey] == null)
+					{
+						m_activeSprite.enabled = false;
+					}
+					else
+					{
+						m_activeSprite.enabled = true;
 					}
 				}
-				else
+			}
+			else
+			{
+				if (m_currentAnimTime > getAnimationTime())
 				{
-					if (m_currentAnimTime > getAnimationTime())
+					if (m_repeat)
 					{
-						if (m_repeat)
-						{
-							play();
-						}
-						else
-						{
-							stop();
-						}
+						// starts the animation from the begining if it is set to be repeted
+						play();
+					}
+					else
+					{
+						stop();
 					}
 				}
 			}
@@ -199,6 +199,7 @@ public class singleAnim
 	{
 		float time = 0.0f;
 
+		// finds the total time the animation should take
 		for (int z = 0; z < m_displayTimes.Count; z++)
 		{
 			time += m_displayTimes[z];
@@ -211,6 +212,7 @@ public class singleAnim
 	{
 		float time = 0.0f;
 
+		// finds the time that the animation should take to reach the end of the current frame
 		for (int z = 0; z <= index; z++)
 		{
 			time += m_displayTimes[z];
