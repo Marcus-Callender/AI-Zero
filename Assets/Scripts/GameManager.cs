@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 
 	private Transform m_cameraTransform;
 
-	public EnviromentCollision[] m_colliders /*= new EnviromentCollision[1]*/;
-	public Charicter[] m_charicters /*= new Charicter[1]*/;
+	public EnviromentCollision[] m_colliders;
+	public Charicter[] m_charicters;
 	public State_Machine[] m_charicterStates;
 	public PersistantData m_data;
 
@@ -25,20 +25,6 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
-		//for (int z = 0; z < m_walls.Length; z++)
-		//{
-		//	m_colliders[z] = m_walls[z].GetComponent<EnviromentCollision>();
-		//	//m_colliders[z] = m_walls[z].GetComponent(typeof(EnviromentCollision)) as EnviromentCollision;
-		//}
-
-		//for (int z = 0; z < m_zeros.Length; z++)
-		//{
-		//	m_charicters[z] = m_zeros[z].GetComponent<Charicter>();
-		//	//m_charicters[z] = m_zeros[z].GetComponent(typeof(Charicter)) as Charicter;
-		//}
-
-		//m_charicterStates[0] = m_zeros[0].GetComponent<State_Machine>();
-
 		m_cameraTransform = GetComponent<Transform>();
 
 		m_data = FindObjectOfType<PersistantData>();
@@ -208,6 +194,7 @@ public class GameManager : MonoBehaviour
 		m_cameraTransform.position = new Vector3(TargateX, TargateY + 2.0f, -10.0f);
 	}
 
+	// checks to see if the charicters movements will make them overlap with the level geometery
 	bool PredictColiding(Charicter char1, Charicter char2, float deltaTime)
 	{
 		if (char1.isCollidedHorizontal(char2.predictLeft(deltaTime)) || char1.isCollidedHorizontal(char2.predictRight(deltaTime)))
@@ -221,6 +208,7 @@ public class GameManager : MonoBehaviour
 		return false;
 	}
 
+	// detects is two charicters are overlaping
 	bool AreColiding(Charicter char1, Charicter char2)
 	{
 		if (char1.isCollidedHorizontal(char2.getLeft()) || char1.isCollidedHorizontal(char2.getRight()))
@@ -311,28 +299,8 @@ public class GameManager : MonoBehaviour
 
 					float overlapDistance = (onLeft.getRight() - onRight.getLeft());
 
-					//onLeft.addToVelocity(-6.2f, 0.0f);
-					//onRight.addToVelocity(6.2f, 0.0f);
-
-					//onLeft.addToVelocity(-1.2f, 0.0f);
-					//onRight.addToVelocity(1.2f, 0.0f);
-
-					//onLeft.addToVelocity(-12.0f, 0.0f);
-					//onRight.addToVelocity(12.0f, 0.0f);
-
-					//onLeft.setVelocity(-12.0f, 0.0f);
-					//onRight.setVelocity(12.0f, 0.0f);
-
 					onLeft.addToVelocity(-overlapDistance * 6.0f, 0.0f);
 					onRight.addToVelocity(overlapDistance * 6.0f, 0.0f);
-
-					/*float maxVel = m_charicters[z].GetXVelocity();
-
-					if (Mathf.Abs(m_charicters[x].GetXVelocity()) > Mathf.Abs(maxVel))
-						maxVel = m_charicters[x].GetXVelocity();
-
-					m_charicterStates[z].colideHorizontal(maxVel);
-					m_charicterStates[x].colideHorizontal(maxVel);*/
 
 					zerosColided[0] = z;
 					zerosColided[1] = x;

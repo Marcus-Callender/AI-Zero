@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// this is the place where all of a charicters hitboxes are stored and managed
 public class HitBoxManager : MonoBehaviour
 {
 	private Hitbox[] m_hitboxes = new Hitbox[5];
 	
 	public void Initialize()
 	{
+		// creates an array to store refrences to all the hitboxes
 		for (int z = 0; z < 5; z++)
 		{
 			m_hitboxes[z] = null;
@@ -122,6 +124,7 @@ public class HitBoxManager : MonoBehaviour
 				{
 					if (toReturn == -1)
 						toReturn = z;
+
 					// if multiple hiyboxes hit a charicter, debug logs the hitboxes
 					else
 						Debug.Log("Hitboxes: " + z + " & " + toReturn + " hit.");
@@ -181,6 +184,7 @@ public class HitBoxManager : MonoBehaviour
 	}
 }
 
+// this is the detection used on an attack to see if it has hit something
 public class Hitbox
 {
 	private float m_xPos = 0.0f;
@@ -260,6 +264,7 @@ public class Hitbox
 	
 	public bool IsRectInside(float left, float right, float top, float bottom)
 	{
+		// if the hitbox is not curretly active this will always return false
 		if (!m_enabled)
 			return false;
 

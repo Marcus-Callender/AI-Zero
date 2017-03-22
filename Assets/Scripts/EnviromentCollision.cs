@@ -31,9 +31,6 @@ public class EnviromentCollision : MonoBehaviour
 
 	public bool CollideHorizontal(float x)
 	{
-		//Debug.Log("Charicter at " + x + ", Wall at " + m_right + ": " + m_left);
-
-		//if (x > m_right && x < m_left)
 		if (x < m_right && x > m_left)
 		{
 			return true;

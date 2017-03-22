@@ -385,6 +385,7 @@ public class Charicter : MonoBehaviour
 
 	public void AddProjectile(Projectile newPro)
 	{
+		// registeres a projectile with the projectile manager
 		for (int z = 0; z < m_projectileList.Length; z++)
 		{
 			if (m_projectileList[z] == null)
@@ -407,9 +408,6 @@ public class Charicter : MonoBehaviour
 
 	public bool WasHit()
 	{
-		//bool temp = m_wasHit;
-		//m_wasHit = false;
-		//return m_wasHit;
 		return m_wasHit;
 	}
 
