@@ -212,7 +212,7 @@ public class AI_Input : BaseInputHandler
 
 		SetInput((int)eAI_InputArray.ENEMY_FAR, (distance > 8.0f && distance < 32.0f), deltaTime);
 
-		SetInput((int)eAI_InputArray.ENEMY_JUMPING, (opponent.getY() > me.getY()), deltaTime);
+		SetInput((int)eAI_InputArray.ENEMY_JUMPING, (opponent.getY() > (me.getY() + 0.2f)), deltaTime);
 
 		SetInput((int)eAI_InputArray.ENEMY_ON_LEFT, (opponent.getX() < me.getX()), deltaTime);
 	}
