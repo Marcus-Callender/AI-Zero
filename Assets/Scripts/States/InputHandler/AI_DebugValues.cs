@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+public class AI_DebugValues : MonoBehaviour
 {
 	public Texture m_texture;
 	public Sprite m_sprite;
@@ -9,10 +10,9 @@ public class HealthBar : MonoBehaviour
 
 	static private int m_index = 0;
 	private float m_myIndex;
-	private int m_hp = 28;
 
 	private float m_xOffset = 10;
-	private float m_yOffset = 10;
+	private float m_yOffset = 100;
 	private float m_xSpacing = 350;
 
 	private float m_width = 1366;
@@ -20,6 +20,8 @@ public class HealthBar : MonoBehaviour
 
 	private static GUIStyle m_style = null;
 
+	private string m_text;
+	
 	public void Initialize()
 	{
 		m_myIndex = m_index;
@@ -27,6 +29,7 @@ public class HealthBar : MonoBehaviour
 		m_index++;
 
 		InitializeStyle();
+
 	}
 
 	public void DeInitialize()
@@ -34,10 +37,18 @@ public class HealthBar : MonoBehaviour
 		// resets the index count for the next game
 		m_index--;
 	}
-
-	public void Cycle(int hp)
+	
+	public void Cycle(eAI_Actions act, int actFlag)
 	{
-		m_hp = hp;
+		m_text = "";
+
+		m_text += "Action: ";
+
+		m_text += act;
+
+		m_text += "\nFlags: ";
+
+		m_text += actFlag;
 	}
 
 	void OnGUI()
@@ -49,7 +60,7 @@ public class HealthBar : MonoBehaviour
 
 		float xTotal = m_xOffset + (m_xSpacing * m_myIndex);
 
-		GUI.Box(new Rect(xTotal, m_yOffset, 300, 100), "Health: " + m_hp, m_style);
+		GUI.Box(new Rect(xTotal, m_yOffset, 300, 100), m_text, m_style);
 	}
 
 	void InitializeStyle()

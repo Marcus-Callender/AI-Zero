@@ -69,6 +69,8 @@ public class AI_Input : BaseInputHandler
 	private bool m_movingLeft = false;
 	private bool m_movingLeftRefrence = false;
 
+	private AI_DebugValues m_debugText;
+
 	public override void Initialize()
 	{
 		m_currentAction = eAI_Actions.WAIT;
@@ -80,6 +82,10 @@ public class AI_Input : BaseInputHandler
 			//m_InputResults[z] = false;
 			m_timers[z] = -m_timeBoundries;
 		}
+
+		GameObject TextObject = new GameObject("DegugTextObject");
+		m_debugText = TextObject.AddComponent<AI_DebugValues>();
+		m_debugText.Initialize();
 	}
 
 	public override void Cycle(float deltaTime, eStates myState)
@@ -116,6 +122,8 @@ public class AI_Input : BaseInputHandler
 			m_movingLeft = true;
 		else if (m_input[(int)eInputs.RIGHT])
 			m_movingLeft = false;
+
+		m_debugText.Cycle(m_currentAction, m_statusResult);
 	}
 
 	void RunAction(float deltaTime, eStates myState, bool stateChanged)
@@ -660,39 +668,14 @@ public class AI_Input : BaseInputHandler
 
 	int IntToFlag(int z)
 	{
-		// this should be done through maths but I wasn't able to get it to work.
+		int flag = 1;
 
-		if (z == 0)
-			return 0;
+		for (int x = 1; x < z; x++)
+		{
+			flag *= 2;
+		}
 
-		if (z == 1)
-			return 1;
-
-		if (z == 2)
-			return 2;
-
-		if (z == 3)
-			return 4;
-
-		if (z == 4)
-			return 8;
-
-		if (z == 5)
-			return 16;
-
-		if (z == 6)
-			return 32;
-
-		if (z == 7)
-			return 64;
-
-		if (z == 8)
-			return 128;
-
-		if (z == 9)
-			return 256;
-
-		return 0;
+		return flag;
 	}
 
 	void ThrowSubAction(float deltaTime, eStates myState, bool stateChanged)
