@@ -29,15 +29,15 @@ public enum eStates
 // a list of posible inputs
 public enum eInputs
 {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-
 	BLOCK,
 	JUMP,
 	ATTACK_1,
 	ATTACK_2,
+
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
 
 	SIZE_OF_E_INPUTS
 }
@@ -73,6 +73,7 @@ public class State_Machine : MonoBehaviour
 	
 	public void Initialize()
 	{
+        // retreves the needed refrences
 		m_me = GetComponent<Charicter>();
 		m_sprite = GetComponent<SpriteRenderer>();
 		m_inputHandler = GetComponent<BaseInputHandler>();

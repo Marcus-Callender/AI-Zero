@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// this defines the methods needed for the AI and player input handlers
 public class BaseInputHandler : MonoBehaviour
 {
 	public virtual void Initialize()

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// this class is the basses for all the states the zero can move,
+// it defines all the functions that the derived states need acsess to
 public class BaseState : MonoBehaviour
 {
 	protected Charicter m_me;
-
-	// Use this for initialization
+    
 	public virtual void Initialize(Charicter me)
 	{
 		m_me = me;
@@ -18,8 +19,7 @@ public class BaseState : MonoBehaviour
 	public virtual void Exit()
 	{
 	}
-
-	// Update is called once per frame
+    
 	public virtual void Cycle(float deltaTime, ref eStates m_currentState)
 	{
 	}
@@ -42,6 +42,5 @@ public class BaseState : MonoBehaviour
 
 	public virtual void NotCollideVertical(ref eStates m_currentState)
 	{
-		//m_currentState = eStates.FALLING;
 	}
 }
