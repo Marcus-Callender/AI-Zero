@@ -338,7 +338,7 @@ public class GameManager : MonoBehaviour
 
 				if (m_colliders[x].CollideVertical(m_charicters[z].predictTop(deltaTime)) || m_colliders[x].CollideVertical(m_charicters[z].predictBottom(deltaTime)) && !colided)
 				{
-					if (m_colliders[x].CollideHorizontal(m_charicters[z].getLeft()) || m_colliders[x].CollideHorizontal(m_charicters[z].getRight()))
+					if (m_colliders[x].CollideHorizontal(m_charicters[z].getLeft() + 0.1f) || m_colliders[x].CollideHorizontal(m_charicters[z].getRight() - 0.1f))
 					{
 						colidedVertical = true;
 						m_charicterStates[z].collideVertical(m_colliders[x].GetTop());
