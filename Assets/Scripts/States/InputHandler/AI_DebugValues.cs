@@ -40,7 +40,7 @@ public class AI_DebugValues : MonoBehaviour
 		m_index--;
 	}
 
-	public void Cycle(eAI_Actions act, int actFlag)
+	public void Cycle(eAI_Actions act, int actFlag, string aditionalText)
 	{
 		GetFlags(actFlag);
 
@@ -61,6 +61,8 @@ public class AI_DebugValues : MonoBehaviour
 				m_text += ("\n" + (eAI_InputArray) z);
 			}
 		}
+
+		m_text += aditionalText;
 	}
 
 	void OnGUI()

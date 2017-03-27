@@ -29,10 +29,11 @@ public enum eStates
 // a list of posible inputs
 public enum eInputs
 {
-	BLOCK,
 	JUMP,
 	ATTACK_1,
 	ATTACK_2,
+
+	BLOCK,
 
 	UP,
 	DOWN,

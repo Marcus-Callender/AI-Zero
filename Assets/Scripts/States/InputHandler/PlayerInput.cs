@@ -4,10 +4,10 @@ using System.Collections;
 public class PlayerInput : BaseInputHandler
 {
     // this is what keeps track of how much longer a button will be counted as just being pressed
-	private float[] m_inputBuffers = new float[(int)eInputs.UP];
+	private float[] m_inputBuffers = new float[(int)eInputs.BLOCK];
 
     // this is weather the game is reading a button as just being pressed
-    private bool[] m_bufferInUse = new bool[(int)eInputs.UP];
+    private bool[] m_bufferInUse = new bool[(int)eInputs.BLOCK];
     
     // this is how long the game will read a button as just having been pressed
 	private float m_bufferTime = 6.0f / 60.0f;
@@ -15,7 +15,7 @@ public class PlayerInput : BaseInputHandler
 	public override void Initialize()
 	{
 		// initializes the values used
-		for (int z = 0; z < (int)eInputs.UP; z++)
+		for (int z = 0; z < (int)eInputs.BLOCK; z++)
 		{
 			m_inputBuffers[z] = 0.0f;
 			m_bufferInUse[z] = false;
@@ -25,7 +25,7 @@ public class PlayerInput : BaseInputHandler
 	public override void Cycle(float deltaTime, eStates myState)
 	{
 		// reduces the indvidual timers
-		for (int z = 0; z < (int)eInputs.UP; z++)
+		for (int z = 0; z < (int)eInputs.BLOCK; z++)
 		{
 			m_inputBuffers[z] -= deltaTime;
 		}
@@ -75,7 +75,7 @@ public class PlayerInput : BaseInputHandler
 
 	private void SetInputs(ref bool[] inputs)
 	{
-		for (int z = 0; z < (int)eInputs.UP; z++)
+		for (int z = 0; z < (int)eInputs.BLOCK; z++)
 		{
 			// while the countown from pressing the button is still above 0 the button counts as just being pressed
 

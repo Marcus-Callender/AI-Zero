@@ -60,7 +60,7 @@ public class AI_Input : BaseInputHandler
 
 	//private int DEBUG_STATE = -1;
 
-	private float m_timeBoundries = 0.5f;
+	private float m_timeBoundries = 0.3f;
 	private float[] m_timers = new float[(int)eAI_InputArray.TOTAL_INPUTS];
 	private int m_statusResult = 0;
 
@@ -70,6 +70,7 @@ public class AI_Input : BaseInputHandler
 	private bool m_movingLeftRefrence = false;
 
 	private AI_DebugValues m_debugText;
+	private string m_addToDebugText;
 
 	public override void Initialize()
 	{
@@ -97,6 +98,8 @@ public class AI_Input : BaseInputHandler
 
 		bool stateChanged = false;
 
+		m_addToDebugText = "\n";
+
 		if (m_previousAction != m_currentAction)
 		{
 			Debug.Log("Going to state: " + m_currentAction);
@@ -123,7 +126,7 @@ public class AI_Input : BaseInputHandler
 		else if (m_input[(int)eInputs.RIGHT])
 			m_movingLeft = false;
 
-		m_debugText.Cycle(m_currentAction, m_statusResult);
+		m_debugText.Cycle(m_currentAction, m_statusResult, m_addToDebugText);
 	}
 
 	void RunAction(float deltaTime, eStates myState, bool stateChanged)
@@ -548,6 +551,8 @@ public class AI_Input : BaseInputHandler
 		{
 			return eAI_Actions.FREE;
 		}
+
+		m_addToDebugText += "Wait Time: " + (m_waitingTime - m_stateTime);
 
 		return eAI_Actions.WAIT;
 	}
